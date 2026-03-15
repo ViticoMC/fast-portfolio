@@ -31,11 +31,31 @@ export const en = {
     name: "Victor",
     title: "Front End",
     description:
-      "Crafting high-performance digital products with a focus on clean code and exceptional user experiences. Transforming complex ideas into elegant solutions.",
+      "Frontend Web Developer with 2+ years of experience building modern interfaces using React, Next.js, and TypeScript. Focused on creating clean, performant, and user-centered web experiences.",
     buttons: {
       contact: "Contact Me",
       downloadCV: "Download CV",
     },
     techStack: ["JS", "HTML5", "CSS3", "React", "NEXT.js"],
+  },
+  techStackSection: {
+    badge: "Tech Stack",
+    title: "Technologies I Use",
+    categories: {
+      frontend: "Frontend",
+      backend: "Backend",
+      database: "Database",
+      tools: "Tools",
+    },
+  },
+  projectsSection: {
+    badge: "PORTFOLIO",
+    title: "Personal Projects",
+    buttons: {
+      demo: "DEMO",
+      code: "CODE",
+      status: "PRIVATE",
+      details: "DETAILS",
+    },
   },
 } as const;

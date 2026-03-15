@@ -2,7 +2,6 @@ import TextType from "@/components/TextType";
 import { useTranslation } from "react-i18next";
 import { Github, Linkedin, Mail } from "lucide-react";
 import DownloadButton from "../DownloadButton";
-import Silk from "@/components/Silk";
 // import HeroTechIcons from "../HeroTechIcons";
 
 
@@ -20,9 +19,8 @@ const socialLinks = [
     icon: <Mail className="w-5 h-5" />,
   },
 ];
-const SILKCOLOR = "rgb(67, 9, 148)";
 
-export default function HeroSection() {
+export function HeroSection() {
   const { t, i18n } = useTranslation();
 
   const data = t("hero", { returnObjects: true });
@@ -30,16 +28,25 @@ export default function HeroSection() {
 
   return (
     <section className="relative  w-full h-screen flex flex-col items-center justify-around ">
-      <div className="absolute inset-0 w-full h-full">
-        <Silk color={SILKCOLOR} speed={5} />
-      </div>
+
 
 
       {/* Contenido principal */}
-      <div className="relative bg-background/40 flex flex-col gap-8 items-center justify-center md:max-w-2xl max-w-xl p-4 rounded-2xl ">
+      <div className="relative max-h-[80vh]  flex flex-col gap-3 items-center justify-center md:max-w-2xl max-w-xl p-4 rounded-2xl backdrop-blur-md">
         {/* Badge */}
-        <div className="mb-4 p-4 bg-highlight-blue/40 border border-border rounded-full text-xs tracking-wider text-foreground uppercase animate-fade-in">
+        <div className="p-2 bg-highlight-blue/40 border border-border rounded-full text-xs tracking-wider text-foreground uppercase animate-fade-in">
           <TextType key={i18n.language} text={[...data.badge]} />
+        </div>
+
+        {/* Avatar */}
+        <div className="absolute md:top-4 top-8 right-1 rotate-30 animate-fade-in delay-100">
+          <div className="w-24 h-24 md:w-32 md:h-32 rounded-full border-2 border-highlight-blue/60 overflow-hidden shadow-glow hover:shadow-glow hover:scale-[1.05] transition-all duration-300">
+            <img
+              src="/my-skin.webp"
+              alt="Avatar"
+              className="w-full h-full object-cover"
+            />
+          </div>
         </div>
 
         {/* Hero text */}
@@ -48,7 +55,7 @@ export default function HeroSection() {
             {data.greeting} <span className="text-text-primary font-medium">{data?.name}</span>
           </h1>
 
-          <h2 className="text-5xl md:text-7xl lg:text-8xl font-bold text-text-primary leading-tight">
+          <h2 className="text-4xl md:text-5xl lg:text-7xl font-bold text-text-primary leading-tight">
             {data.title}
           </h2>
 
@@ -68,7 +75,7 @@ export default function HeroSection() {
         </div>
 
         {/* Botones CTA */}
-        <div className="flex flex-wrap gap-4 mt-4 animate-fade-in delay-200">
+        <div className="flex flex-wrap gap-4 mt-4 justify-center items-center animate-fade-in delay-200">
           <button className="group px-8 py-3 border border-border hover:border-border-light hover:scale-[1.1] rounded-lg text-text-primary font-medium transition-all duration-300  flex items-center gap-2 hover:shadow-glow">
             {data.buttons.contact}
             <svg

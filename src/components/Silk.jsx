@@ -28,6 +28,7 @@ varying vec3 vPosition;
 
 uniform float uTime;
 uniform vec3  uColor;
+uniform vec3  uBackgroundColor; // Nuevo uniform para el fondo
 uniform float uSpeed;
 uniform float uScale;
 uniform float uRotation;
@@ -62,32 +63,41 @@ void main() {
                                    0.02 * tOffset) +
                            sin(20.0 * (tex.x + tex.y - 0.1 * tOffset)));
 
-  vec4 col = vec4(uColor, 1.0) * vec4(pattern) - rnd / 15.0 * uNoiseIntensity;
-  col.a = 1.0;
-  gl_FragColor = col;
+  // Usamos el uniform uBackgroundColor en lugar de blanco estático
+  vec3 finalRGB = mix(uBackgroundColor, uColor, pattern);
+  
+  // Aplicamos el grano del ruido sobre el resultado final
+  finalRGB -= (rnd / 15.0 * uNoiseIntensity);
+
+  gl_FragColor = vec4(finalRGB, 1.0);
 }
 `;
 
 const SilkPlane = forwardRef(function SilkPlane({ uniforms }, ref) {
   const { viewport } = useThree();
 
+  // Forzamos la escala al tamaño del viewport
   useLayoutEffect(() => {
     if (ref.current) {
       ref.current.scale.set(viewport.width, viewport.height, 1);
     }
-  }, [ref, viewport]);
+  }, [viewport.width, viewport.height]);
 
-  useFrame((_, delta) => {
-    ref.current.material.uniforms.uTime.value += 0.1 * delta;
+  useFrame((state) => {
+    if (ref.current && ref.current.material) {
+      // Usamos el clock interno de Three para un movimiento constante
+      ref.current.material.uniforms.uTime.value = state.clock.getElapsedTime();
+    }
   });
 
   return (
     <mesh ref={ref}>
-      <planeGeometry args={[1, 1, 1, 1]} />
+      <planeGeometry args={[1, 1]} />
       <shaderMaterial
         uniforms={uniforms}
         vertexShader={vertexShader}
         fragmentShader={fragmentShader}
+        transparent={true}
       />
     </mesh>
   );
@@ -95,30 +105,47 @@ const SilkPlane = forwardRef(function SilkPlane({ uniforms }, ref) {
 SilkPlane.displayName = "SilkPlane";
 
 const Silk = ({
-  speed = 5,
-  scale = 1,
-  color,
-  noiseIntensity = 1.5,
+  speed = 0.2,
+  scale = 1.5,
+  color = "#430994",
+  backgroundColor = "#ffffff", // Nueva prop
+  noiseIntensity = 1.0,
   rotation = 0,
 }) => {
   const meshRef = useRef();
 
-  const uniforms = useMemo(
-    () => ({
-      uSpeed: { value: speed },
-      uScale: { value: scale },
-      uNoiseIntensity: { value: noiseIntensity },
-      uColor: { value: new Color(...hexToNormalizedRGB(color)) },
-      uRotation: { value: rotation },
-      uTime: { value: 0 },
-    }),
-    [speed, scale, noiseIntensity, color, rotation],
-  );
+  const uniformsRef = useRef({
+    uSpeed: { value: speed },
+    uScale: { value: scale },
+    uNoiseIntensity: { value: noiseIntensity },
+    uColor: { value: new Color(color) },
+    uBackgroundColor: { value: new Color(backgroundColor) }, // Inicialización del uniform
+    uRotation: { value: rotation },
+    uTime: { value: 0 },
+  });
+
+  useEffect(() => {
+    const u = uniformsRef.current;
+    if (u) {
+      u.uSpeed.value = speed;
+      u.uScale.value = scale;
+      u.uNoiseIntensity.value = noiseIntensity;
+      u.uRotation.value = rotation;
+      u.uColor.value.set(color);
+      u.uBackgroundColor.value.set(backgroundColor); // Actualización dinámica
+    }
+  }, [speed, scale, noiseIntensity, color, backgroundColor, rotation]);
 
   return (
-    <Canvas dpr={[1, 2]} frameloop="always">
-      <SilkPlane ref={meshRef} uniforms={uniforms} />
-    </Canvas>
+    <div className="absolute inset-0 -z-10 w-full h-full">
+      <Canvas
+        dpr={[1, 2]}
+        camera={{ position: [0, 0, 1], fov: 50 }}
+        style={{ background: backgroundColor }} // Sincroniza el fondo del Canvas
+      >
+        <SilkPlane ref={meshRef} uniforms={uniformsRef.current} />
+      </Canvas>
+    </div>
   );
 };
 

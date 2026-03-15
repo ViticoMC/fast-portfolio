@@ -1,3 +1,3 @@
-import { en } from '@/language/locales/en';
+import { en } from "@/language/locales/en";
 
 export type Translations = typeof en;

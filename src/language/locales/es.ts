@@ -31,11 +31,31 @@ export const es = {
     name: "Victor",
     title: "Front End",
     description:
-      "Soy desarrollador web con experiencia en React, Next.js y TypeScript. Me apasiona crear interfaces modernas, limpias y optimizadas para mejorar la experiencia del usuario. Busco colaborar en proyectos innovadores y desafiantes.",
+      "Desarrollador Web Frontend con más de 2 años de experiencia creando interfaces modernas con React, Next.js y TypeScript. Enfocado en desarrollar experiencias web limpias, rápidas y centradas en el usuario.",
     buttons: {
       contact: "Contáctame",
       downloadCV: "Descargar CV",
     },
     techStack: ["JS", "HTML5", "CSS3", "React", "NEXT.js"],
+  },
+  techStackSection: {
+    badge: "Stack Tecnológico",
+    title: "Tecnologías que uso",
+    categories: {
+      frontend: "Frontend",
+      backend: "Backend",
+      database: "Base de Datos",
+      tools: "Herramientas",
+    },
+  },
+  projectsSection: {
+    badge: "PORTAFOLIO",
+    title: "Proyectos Personales",
+    buttons: {
+      demo: "DEMO",
+      code: "CÓDIGO",
+      status: "PRIVADO",
+      details: "DETALLES",
+    },
   },
 } as const;
