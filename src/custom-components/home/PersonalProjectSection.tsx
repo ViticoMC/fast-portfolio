@@ -1,8 +1,9 @@
 import { motion, type Variants } from "framer-motion";
 import { useTranslation } from "react-i18next";
 import { ProjectCard } from "../../custom-components/ProjectCard";
-import { featuredProjects } from "@/assets/mock/mockProjects";
+import { } from "@/assets/mock/mockProjects";
 import { Link } from "react-router-dom";
+import { useGetAllprojects } from "@/hooks/useGetAllProjects";
 
 const containerVariants: Variants = {
     hidden: { opacity: 0 },
@@ -31,8 +32,10 @@ const itemVariants: Variants = {
 export function TestProjectsSection() {
     const { t } = useTranslation();
 
+    const { PROJECTS } = useGetAllprojects()
+
     // Mostrar solo los primeros 2 proyectos
-    const displayedProjects = featuredProjects.slice(0, 2);
+    const displayedProjects = PROJECTS.slice(0, 2);
 
     return (
         <section className="w-full h-full  px-4 ">

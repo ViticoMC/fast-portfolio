@@ -5,8 +5,8 @@ import StackIcon from "tech-stack-icons";
 import { BackButton } from "@/custom-components/common";
 import DemoButton from "@/custom-components/buttons/DemoButton";
 import CodeButton from "@/custom-components/buttons/CodeButton";
-import { featuredProjects } from "@/assets/mock/mockProjects";
 import type { Project } from "@/types";
+import { useGetAllprojects } from "@/hooks/useGetAllProjects";
 
 /**
  * Página de detalle de proyecto
@@ -17,8 +17,10 @@ export function ProjectDetails() {
     const navigate = useNavigate();
     const { t } = useTranslation();
 
+    const { PROJECTS } = useGetAllprojects()
+
     // Buscar el proyecto por ID
-    const project: Project | undefined = featuredProjects.find(
+    const project: Project | undefined = PROJECTS.find(
         (p) => p.id === parseInt(projectId || "0")
     );
 
@@ -59,7 +61,7 @@ export function ProjectDetails() {
 
                 {/* Image Hero */}
                 <motion.div
-                    className="relative rounded-3xl overflow-hidden mb-12 h-96 md:h-[500px]"
+                    className="relative rounded-3xl overflow-hidden mb-12 h-96 md:h-125"
                     initial={{ opacity: 0, scale: 0.95 }}
                     animate={{ opacity: 1, scale: 1 }}
                     transition={{ duration: 0.5, delay: 0.1 }}

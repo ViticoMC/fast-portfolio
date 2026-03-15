@@ -1,11 +1,11 @@
-import { useState, useMemo, useEffect } from "react";
+import { useState, useEffect } from "react";
 import { motion, type Variants } from "framer-motion";
 import { useNavigate } from "react-router-dom";
 import { BackButton, SearchBar, TechFilter } from "@/custom-components/common";
-import { ProjectCard } from "@/custom-components/ProjectCard";
-import { featuredProjects } from "@/assets/mock/mockProjects";
 import type { TechStackName } from "@/types";
 import { extractUniqueTechs } from "@/utils/extractUniqueTech";
+import { ProjectCard } from "@/custom-components/ProjectCard";
+import { useGetAllprojects } from "@/hooks/useGetAllProjects";
 
 const containerVariants: Variants = {
     hidden: { opacity: 0 },
@@ -40,25 +40,27 @@ export function Projects() {
     const [searchQuery, setSearchQuery] = useState("");
     const [selectedTechs, setSelectedTechs] = useState<TechStackName[]>([]);
 
+    const { PROJECTS } = useGetAllprojects()
+
+
     // Extraer tecnologías únicas disponibles
-    const availableTechs = useMemo(() => extractUniqueTechs(featuredProjects), []);
+    const availableTechs = extractUniqueTechs(PROJECTS);
 
     // Filtrar proyectos basado en búsqueda y tecnologías
-    const filteredProjects = useMemo(() => {
-        return featuredProjects.filter((project) => {
-            // Filtro de búsqueda (título o descripción)
-            const matchesSearch =
-                project.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
-                project.description.toLowerCase().includes(searchQuery.toLowerCase());
+    const filteredProjects = PROJECTS.filter((project) => {
+        // Filtro de búsqueda (título o descripción)
+        const matchesSearch =
+            project.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
+            project.description.toLowerCase().includes(searchQuery.toLowerCase());
 
-            // Filtro de tecnologías (si hay seleccionadas, debe tener al menos una)
-            const matchesTechs =
-                selectedTechs.length === 0 ||
-                project.technologies.some((tech) => selectedTechs.includes(tech.name));
+        // Filtro de tecnologías (si hay seleccionadas, debe tener al menos una)
+        const matchesTechs =
+            selectedTechs.length === 0 ||
+            project.technologies.some((tech) => selectedTechs.includes(tech.name));
 
-            return matchesSearch && matchesTechs;
-        });
-    }, [searchQuery, selectedTechs]);
+        return matchesSearch && matchesTechs;
+    });
+
 
     const handleTechChange = (tech: TechStackName, isSelected: boolean) => {
         setSelectedTechs((prev) =>

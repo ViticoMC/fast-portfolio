@@ -7,7 +7,8 @@ export type TechStackName =
   | "vitejs"
   | "tauri"
   | "nextjs"
-  | "prisma";
+  | "prisma"
+  | "astro";
 
 export type Technology = {
   name: TechStackName;
@@ -24,7 +25,7 @@ export type Project = {
   technologies: Technology[];
   problem: string;
   features: string[];
-  demoUrl: string;
+  demoUrl?: string;
   codeUrl?: string;
   status?: ProjectStatus;
 };
