@@ -3,9 +3,9 @@ import { motion, type Variants } from "framer-motion";
 import { useTranslation } from "react-i18next";
 import { useNavigate } from "react-router-dom";
 import StackIcon from "tech-stack-icons";
-import DemoButton from "./DemoButton";
-import CodeButton from "./CodeButton";
-import DetailsButton from "./DetailsButton";
+import DemoButton from "./buttons/DemoButton";
+import CodeButton from "./buttons/CodeButton";
+import DetailsButton from "./buttons/DetailsButton";
 
 interface ProjectCardProps {
     project: Project;

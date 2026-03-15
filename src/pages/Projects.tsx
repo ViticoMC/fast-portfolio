@@ -1,8 +1,8 @@
 import { useState, useMemo, useEffect } from "react";
 import { motion, type Variants } from "framer-motion";
 import { useNavigate } from "react-router-dom";
-import { BackButton, SearchBar, TechFilter } from "@/component/common";
-import { ProjectCard } from "@/component/ProjectCard";
+import { BackButton, SearchBar, TechFilter } from "@/custom-components/common";
+import { ProjectCard } from "@/custom-components/ProjectCard";
 import { featuredProjects } from "@/assets/mock/mockProjects";
 import type { TechStackName } from "@/types";
 import { extractUniqueTechs } from "@/utils/extractUniqueTech";

@@ -2,9 +2,9 @@ import { useParams, useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
 import { useTranslation } from "react-i18next";
 import StackIcon from "tech-stack-icons";
-import { BackButton } from "@/component/common";
-import DemoButton from "@/component/DemoButton";
-import CodeButton from "@/component/CodeButton";
+import { BackButton } from "@/custom-components/common";
+import DemoButton from "@/custom-components/buttons/DemoButton";
+import CodeButton from "@/custom-components/buttons/CodeButton";
 import { featuredProjects } from "@/assets/mock/mockProjects";
 import type { Project } from "@/types";
 

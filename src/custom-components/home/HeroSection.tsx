@@ -1,7 +1,7 @@
 import TextType from "@/components/TextType";
 import { useTranslation } from "react-i18next";
 import { Github, Linkedin, Mail } from "lucide-react";
-import DownloadButton from "../DownloadButton";
+import DownloadButton from "../buttons/DownloadButton";
 // import HeroTechIcons from "../HeroTechIcons";
 
 
@@ -28,10 +28,6 @@ export function HeroSection() {
 
   return (
     <section className="relative  w-full h-screen flex flex-col items-center justify-around ">
-
-
-
-      {/* Contenido principal */}
       <div className="relative max-h-[80vh]  flex flex-col gap-3 items-center justify-center md:max-w-2xl max-w-xl p-4 rounded-2xl backdrop-blur-md">
         {/* Badge */}
         <div className="p-2 bg-highlight-blue/40 border border-border rounded-full text-xs tracking-wider text-foreground uppercase animate-fade-in">
