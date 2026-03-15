@@ -71,7 +71,7 @@ export function ProjectDetails() {
                         alt={project.title}
                         className="w-full h-full object-cover"
                     />
-                    <div className="absolute inset-0 bg-linear-to-t from-foreground/40 via-transparent to-transparent"></div>
+                    <div className="absolute inset-0 bg-linear-to-t from-foreground/20 via-transparent to-transparent"></div>
                 </motion.div>
 
                 {/* Main Content */}
@@ -93,10 +93,47 @@ export function ProjectDetails() {
                                 </span>
                             )}
                         </div>
-                        <p className="text-xl text-text-muted leading-relaxed">
+                        {/* <p className="text-lg text-text-muted leading-relaxed">
                             {project.description}
-                        </p>
+                        </p> */}
                     </div>
+
+                    {/* Long Description Section */}
+                    <section className="pb-8 border-b border-border">
+                        <h2 className="text-2xl font-bold text-text-primary mb-4">
+                            Descripción Completa
+                        </h2>
+                        <p className="text-lg text-text-muted leading-relaxed">
+                            {project.longDescription}
+                        </p>
+                    </section>
+
+                    {/* Screenshots Section */}
+                    {project.screenshots && project.screenshots.length > 0 && (
+                        <section className="pb-8 border-b border-border">
+                            <h2 className="text-2xl font-bold text-text-primary mb-6">
+                                Galería de Imágenes
+                            </h2>
+                            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                                {project.screenshots.map((screenshot, idx) => (
+                                    <motion.div
+                                        key={idx}
+                                        className="relative rounded-lg overflow-hidden h-64 md:h-80"
+                                        initial={{ opacity: 0, scale: 0.95 }}
+                                        animate={{ opacity: 1, scale: 1 }}
+                                        transition={{ duration: 0.4, delay: idx * 0.1 }}
+                                        whileHover={{ scale: 1.02 }}
+                                    >
+                                        <img
+                                            src={screenshot}
+                                            alt={`${project.title} screenshot ${idx + 1}`}
+                                            className="w-full h-full object-cover"
+                                        />
+                                    </motion.div>
+                                ))}
+                            </div>
+                        </section>
+                    )}
 
                     {/* Technologies Section */}
                     <section className="pb-8 border-b border-border">
@@ -104,11 +141,14 @@ export function ProjectDetails() {
                             Tecnologías Utilizadas
                         </h2>
                         <div className="flex flex-wrap gap-4">
-                            {project.technologies.map((tech) => (
+                            {project.technologies.map((tech, idx) => (
                                 <motion.div
                                     key={tech.title}
                                     className="flex items-center gap-3 px-4 py-3 rounded-lg bg-foreground/10 border border-border hover:border-highlight-blue/50 transition-all"
-                                    whileHover={{ scale: 1.05, borderColor: "rgb(59, 130, 246)" }}
+                                    whileHover={{ scale: 1.05 }}
+                                    initial={{ opacity: 0, y: 10 }}
+                                    animate={{ opacity: 1, y: 0 }}
+                                    transition={{ duration: 0.3, delay: idx * 0.05 }}
                                 >
                                     <StackIcon name={tech.name} className="w-6 h-6" />
                                     <div>
@@ -133,6 +173,33 @@ export function ProjectDetails() {
                         </div>
                     </section>
 
+                    {/* Architecture Section */}
+                    {project.architecture && project.architecture.length > 0 && (
+                        <section className="pb-8 border-b border-border">
+                            <h2 className="text-2xl font-bold text-text-primary mb-6">
+                                Arquitectura del Proyecto
+                            </h2>
+                            <ul className="space-y-3">
+                                {project.architecture.map((arch, idx) => (
+                                    <motion.li
+                                        key={idx}
+                                        className="flex items-start gap-4"
+                                        initial={{ opacity: 0, x: -20 }}
+                                        animate={{ opacity: 1, x: 0 }}
+                                        transition={{ duration: 0.3, delay: idx * 0.05 }}
+                                    >
+                                        <div className="shrink-0 w-6 h-6 rounded-lg bg-cyan-500/20 border border-cyan-500/50 flex items-center justify-center mt-1">
+                                            <span className="text-xs font-bold text-cyan-400">→</span>
+                                        </div>
+                                        <span className="text-base text-text-muted leading-relaxed">
+                                            {arch}
+                                        </span>
+                                    </motion.li>
+                                ))}
+                            </ul>
+                        </section>
+                    )}
+
                     {/* Features Section */}
                     <section className="pb-8 border-b border-border">
                         <h2 className="text-2xl font-bold text-text-primary mb-6">
@@ -150,13 +217,119 @@ export function ProjectDetails() {
                                     <div className="shrink-0 w-6 h-6 rounded-full bg-highlight-blue/20 border border-highlight-blue/50 flex items-center justify-center mt-1">
                                         <span className="w-2 h-2 rounded-full bg-highlight-blue"></span>
                                     </div>
-                                    <span className="text-lg text-text-muted leading-relaxed">
+                                    <span className="text-base text-text-muted leading-relaxed">
                                         {feature}
                                     </span>
                                 </motion.li>
                             ))}
                         </ul>
                     </section>
+
+                    {/* Technical Highlights Section */}
+                    {project.technicalHighlights && project.technicalHighlights.length > 0 && (
+                        <section className="pb-8 border-b border-border">
+                            <h2 className="text-2xl font-bold text-text-primary mb-6">
+                                Aspectos Técnicos Destacables
+                            </h2>
+                            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                                {project.technicalHighlights.map((highlight, idx) => (
+                                    <motion.div
+                                        key={idx}
+                                        className="p-4 rounded-lg bg-foreground/5 border border-highlight-blue/30 hover:border-highlight-blue/60 transition-all"
+                                        initial={{ opacity: 0, y: 10 }}
+                                        animate={{ opacity: 1, y: 0 }}
+                                        transition={{ duration: 0.3, delay: idx * 0.05 }}
+                                        whileHover={{ scale: 1.02 }}
+                                    >
+                                        <p className="text-sm text-text-muted leading-relaxed">
+                                            ⚡ {highlight}
+                                        </p>
+                                    </motion.div>
+                                ))}
+                            </div>
+                        </section>
+                    )}
+
+                    {/* Challenges Section */}
+                    {project.challenges && project.challenges.length > 0 && (
+                        <section className="pb-8 border-b border-border">
+                            <h2 className="text-2xl font-bold text-text-primary mb-6">
+                                Retos Técnicos Encontrados
+                            </h2>
+                            <ul className="space-y-3">
+                                {project.challenges.map((challenge, idx) => (
+                                    <motion.li
+                                        key={idx}
+                                        className="flex items-start gap-4"
+                                        initial={{ opacity: 0, x: -20 }}
+                                        animate={{ opacity: 1, x: 0 }}
+                                        transition={{ duration: 0.3, delay: idx * 0.05 }}
+                                    >
+                                        <div className="shrink-0 w-6 h-6 rounded-lg bg-orange-500/20 border border-orange-500/50 flex items-center justify-center mt-1">
+                                            <span className="text-xs font-bold text-orange-400">!</span>
+                                        </div>
+                                        <span className="text-base text-text-muted leading-relaxed">
+                                            {challenge}
+                                        </span>
+                                    </motion.li>
+                                ))}
+                            </ul>
+                        </section>
+                    )}
+
+                    {/* Learnings Section */}
+                    {project.learnings && project.learnings.length > 0 && (
+                        <section className="pb-8 border-b border-border">
+                            <h2 className="text-2xl font-bold text-text-primary mb-6">
+                                Aprendizajes Obtenidos
+                            </h2>
+                            <ul className="space-y-3">
+                                {project.learnings.map((learning, idx) => (
+                                    <motion.li
+                                        key={idx}
+                                        className="flex items-start gap-4"
+                                        initial={{ opacity: 0, x: -20 }}
+                                        animate={{ opacity: 1, x: 0 }}
+                                        transition={{ duration: 0.3, delay: idx * 0.05 }}
+                                    >
+                                        <div className="shrink-0 w-6 h-6 rounded-lg bg-green-500/20 border border-green-500/50 flex items-center justify-center mt-1">
+                                            <span className="text-xs font-bold text-green-400">✓</span>
+                                        </div>
+                                        <span className="text-base text-text-muted leading-relaxed">
+                                            {learning}
+                                        </span>
+                                    </motion.li>
+                                ))}
+                            </ul>
+                        </section>
+                    )}
+
+                    {/* Future Improvements Section */}
+                    {project.futureImprovements && project.futureImprovements.length > 0 && (
+                        <section className="pb-8 border-b border-border">
+                            <h2 className="text-2xl font-bold text-text-primary mb-6">
+                                Posibles Mejoras Futuras
+                            </h2>
+                            <ul className="space-y-3">
+                                {project.futureImprovements.map((improvement, idx) => (
+                                    <motion.li
+                                        key={idx}
+                                        className="flex items-start gap-4"
+                                        initial={{ opacity: 0, x: -20 }}
+                                        animate={{ opacity: 1, x: 0 }}
+                                        transition={{ duration: 0.3, delay: idx * 0.05 }}
+                                    >
+                                        <div className="shrink-0 w-6 h-6 rounded-lg bg-purple-500/20 border border-purple-500/50 flex items-center justify-center mt-1">
+                                            <span className="text-xs font-bold text-purple-400">★</span>
+                                        </div>
+                                        <span className="text-base text-text-muted leading-relaxed">
+                                            {improvement}
+                                        </span>
+                                    </motion.li>
+                                ))}
+                            </ul>
+                        </section>
+                    )}
 
                     {/* Action Buttons */}
                     <motion.div

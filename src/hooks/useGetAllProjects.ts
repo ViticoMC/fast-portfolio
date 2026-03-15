@@ -1,4 +1,5 @@
-import { PROJECTSEN, PROJECTSES } from "@/assets/mock/mockProjects";
+import { PROJECTSEN } from "@/assets/mock/projectsEN";
+import { PROJECTSES } from "@/assets/mock/projetcsES";
 import { useTranslation } from "react-i18next";
 
 export function useGetAllprojects() {

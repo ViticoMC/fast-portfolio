@@ -6,6 +6,7 @@ import type { TechStackName } from "@/types";
 import { extractUniqueTechs } from "@/utils/extractUniqueTech";
 import { ProjectCard } from "@/custom-components/ProjectCard";
 import { useGetAllprojects } from "@/hooks/useGetAllProjects";
+import useScrollTop from "@/hooks/useScrollTop";
 
 const containerVariants: Variants = {
     hidden: { opacity: 0 },
@@ -72,14 +73,7 @@ export function Projects() {
         navigate(`/projects/${projectId}`);
     };
 
-    useEffect(() => {
-        if (typeof window !== "undefined") {
-            window.scrollTo({
-                top: 0,
-                behavior: "smooth"
-            });
-        }
-    }, []);
+    useScrollTop()
 
     return (
         <div className="min-h-screen pt-24 pb-16 px-4">
