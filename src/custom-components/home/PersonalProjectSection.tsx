@@ -1,7 +1,6 @@
 import { motion, type Variants } from "framer-motion";
 import { useTranslation } from "react-i18next";
 import { ProjectCard } from "../../custom-components/ProjectCard";
-import { } from "@/assets/mock/mockProjects";
 import { Link } from "react-router-dom";
 import { useGetAllprojects } from "@/hooks/useGetAllProjects";
 

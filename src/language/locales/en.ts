@@ -58,4 +58,20 @@ export const en = {
       details: "DETAILS",
     },
   },
+  workExperienceSection: {
+    badge: "EXPERIENCE",
+    title: "Work Experience",
+    description:
+      "A frontend-focused track record across team-based and independent work, emphasizing concrete responsibilities, visible impact, and strong technical execution.",
+    labels: {
+      mode: "Mode",
+      responsibilities: "Key responsibilities",
+      achievements: "Highlights",
+    },
+    modes: {
+      solo: "Solo",
+      team: "Team",
+      hybrid: "Hybrid",
+    },
+  },
 } as const;

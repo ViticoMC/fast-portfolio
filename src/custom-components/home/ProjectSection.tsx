@@ -1,6 +1,6 @@
 
 
-import { data } from "@/assets/mock/pryectos";
+// import { data } from "@/assets/mock/pryectos";
 import Stack from "@/components/Stack";
 import { useTranslation } from "react-i18next";
 
@@ -25,7 +25,7 @@ export function ProjectsSection() {
                 {/* Projects Stack */}
                 <div className="mt-10 max-w-3xl mx-auto h-120">
                     <Stack
-                        cards={data.map((project, idx) => (
+                        cards={[].map((project, idx) => (
                             <div
                                 key={project.id}
                                 className="p-4 group relative w-full h-full bg-linear-to-br from-surface to-surface-elevated backdrop-blur-xl border border-foreground/10 rounded-3xl overflow-hidden hover:border-primary/50 transition-all duration-300 shadow-2xl"

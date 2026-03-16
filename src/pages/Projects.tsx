@@ -1,12 +1,13 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { motion, type Variants } from "framer-motion";
 import { useNavigate } from "react-router-dom";
-import { BackButton, SearchBar, TechFilter } from "@/custom-components/common";
+import { SearchBar, TechFilter } from "@/custom-components/common";
 import type { TechStackName } from "@/types";
 import { extractUniqueTechs } from "@/utils/extractUniqueTech";
 import { ProjectCard } from "@/custom-components/ProjectCard";
 import { useGetAllprojects } from "@/hooks/useGetAllProjects";
 import useScrollTop from "@/hooks/useScrollTop";
+import { BackButton } from "@/custom-components/buttons/BackButton";
 
 const containerVariants: Variants = {
     hidden: { opacity: 0 },

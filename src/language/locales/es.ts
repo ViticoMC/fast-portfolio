@@ -58,4 +58,20 @@ export const es = {
       details: "DETALLES",
     },
   },
+  workExperienceSection: {
+    badge: "EXPERIENCIA",
+    title: "Experiencia Laboral",
+    description:
+      "Trayectoria enfocada en desarrollo frontend, con entregas en equipo y de forma independiente, priorizando tareas concretas, impacto visible y buena ejecucion tecnica.",
+    labels: {
+      mode: "Modalidad",
+      responsibilities: "Tareas principales",
+      achievements: "Resultados destacados",
+    },
+    modes: {
+      solo: "Solo",
+      team: "En equipo",
+      hybrid: "Hibrido",
+    },
+  },
 } as const;
