@@ -52,7 +52,6 @@ const techCategories: TechCategory[] = [
             { name: "expressjs", title: "Express", href: "https://expressjs.com", ...generateRandomValues() },
             { name: "python", title: "Python", href: "https://www.python.org", ...generateRandomValues() },
             { name: "java", title: "Java", href: "https://www.java.com", ...generateRandomValues() },
-            { name: "tauri", title: "Tauri", href: "https://tauri.app", ...generateRandomValues() },
             { name: "prisma", title: "Prisma", href: "https://www.prisma.io", ...generateRandomValues() },
         ]
     },
@@ -73,6 +72,8 @@ const techCategories: TechCategory[] = [
             { name: "git", title: "Git", href: "https://git-scm.com", ...generateRandomValues() },
             { name: "vercel", title: "Vercel", href: "https://vercel.com", ...generateRandomValues() },
             { name: "zustand", title: "Zustand", href: "https://zustand-demo.pmnd.rs", ...generateRandomValues() },
+            { name: "tauri", title: "Tauri", href: "https://tauri.app", ...generateRandomValues() },
+
             { name: "tanstack", title: "TanStack Query", href: "https://tanstack.com/query", ...generateRandomValues() },
             { name: "supabase", title: "Supabase", href: "https://supabase.com", ...generateRandomValues() },
         ]
@@ -83,7 +84,7 @@ export function TechStackSection() {
     const { t } = useTranslation();
 
     return (
-        <section className="w-full py-16 px-4">
+        <section className="w-full py-16 md:px-4">
             <div className="max-w-6xl mx-auto rounded-3xl border border-white/10 p-6 md:p-10 shadow-[0_0_40px_rgba(0,0,0,0.35)] backdrop-blur-md">
                 <div className="text-center mb-12">
                     <span className="inline-block px-4 py-1 rounded-full text-xs tracking-widest uppercase border border-border bg-highlight-blue/30 text-foreground">

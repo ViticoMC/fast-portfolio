@@ -1,7 +1,7 @@
 export const en = {
   greeting: "Hello world",
-  welcome: "Welcome to Fast Portfolio",
-  footer: "© 2026 Fast Portfolio. All rights reserved.",
+  welcome: "Welcome to VictorMC Portfolio",
+  footer: "© 2026 VictorMC Portfolio. All rights reserved.",
   nav: {
     home: "Home",
     about: "About",
@@ -20,6 +20,20 @@ export const en = {
     loading: "Loading...",
     error: "An error occurred",
     success: "Success!",
+  },
+  common: {
+    avatar: "Avatar",
+    github: "GitHub",
+    linkedin: "LinkedIn",
+  },
+  projects: {
+    searchPlaceholder: "Search by name or description...",
+    filterByTech: "Filter by technology",
+  },
+  language: {
+    selectLanguage: "Change language",
+    english: "English",
+    spanish: "Spanish",
   },
   hero: {
     badge: [
@@ -51,12 +65,34 @@ export const en = {
   projectsSection: {
     badge: "PORTFOLIO",
     title: "Personal Projects",
+    allProjects: "All Projects",
+    explore: "Explore",
+    projectSingular: "project",
+    projectPlural: "projects",
     buttons: {
       demo: "DEMO",
       code: "CODE",
       status: "PRIVATE",
       details: "DETAILS",
     },
+  },
+  projectDetails: {
+    notFound: "Project Not Found",
+    projectNotFoundDesc: "The project you're looking for doesn't exist.",
+    backToProjects: "Back to Projects",
+    backToAllProjects: "View All Projects",
+    fullDescription: "Full Description",
+    gallery: "Image Gallery",
+    technologiesUsed: "Technologies Used",
+    problemSolved: "Problem Solved",
+    projectArchitecture: "Project Architecture",
+    mainFeatures: "Main Features",
+    technicalHighlights: "Technical Highlights",
+    technicalChallenges: "Technical Challenges Found",
+    learnings: "Learnings Obtained",
+    futureImprovements: "Possible Future Improvements",
+    problemResolved: "Problem you solved",
+    mainCharacteristics: "Main characteristics",
   },
   workExperienceSection: {
     badge: "EXPERIENCE",
@@ -67,11 +103,44 @@ export const en = {
       mode: "Mode",
       responsibilities: "Key responsibilities",
       achievements: "Highlights",
+      gallery: "Work gallery",
     },
     modes: {
       solo: "Solo",
       team: "Team",
       hybrid: "Hybrid",
+    },
+  },
+  contactSection: {
+    badge: "CONTACT",
+    title: "Let's work together",
+    description:
+      "Have a project in mind? I'd love to hear about it. Get in touch with me and let's explore how I can help bring your ideas to life.",
+    email: {
+      label: "Email",
+    },
+    phone: {
+      label: "Phone",
+      value: "+53 56643955",
+    },
+    location: {
+      label: "Location",
+      value: "Cuba",
+    },
+    followUs: "Follow me on",
+    form: {
+      name: "Name",
+      namePlaceholder: "Your name",
+      email: "Email",
+      emailPlaceholder: "your@email.com",
+      subject: "Subject",
+      subjectPlaceholder: "What's this about?",
+      message: "Message",
+      messagePlaceholder: "Tell me more about your project or idea...",
+      submit: "Send Message",
+      sending: "Sending...",
+      successMessage: "Thank you for your message! I'll get back to you soon.",
+      errorMessage: "There was an error. Please try again.",
     },
   },
 } as const;

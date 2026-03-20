@@ -14,4 +14,6 @@ export interface WorkExperience {
   responsibilities: string[];
   achievements: string[];
   technologies: Technology[];
+  demoUrl?: string;
+  workImages?: string[];
 }

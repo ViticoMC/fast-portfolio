@@ -8,7 +8,9 @@ export type TechStackName =
   | "tauri"
   | "nextjs"
   | "prisma"
-  | "astro";
+  | "astro"
+  | "supabase"
+  | "cloudinary";
 
 export type Technology = {
   name: TechStackName;

@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { motion, type Variants } from "framer-motion";
 import { useNavigate } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 import { SearchBar, TechFilter } from "@/custom-components/common";
 import type { TechStackName } from "@/types";
 import { extractUniqueTechs } from "@/utils/extractUniqueTech";
@@ -39,6 +40,7 @@ const itemVariants: Variants = {
  */
 export function Projects() {
     const navigate = useNavigate();
+    const { t } = useTranslation();
     const [searchQuery, setSearchQuery] = useState("");
     const [selectedTechs, setSelectedTechs] = useState<TechStackName[]>([]);
 
@@ -88,10 +90,10 @@ export function Projects() {
                 >
                     <div>
                         <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-text-primary mb-2">
-                            Todos los Proyectos
+                            {t("projectsSection.allProjects")}
                         </h1>
                         <p className="text-text-muted text-lg">
-                            Explora {filteredProjects.length} proyecto{filteredProjects.length !== 1 ? "s" : ""}
+                            {t("projectsSection.explore")} {filteredProjects.length} {filteredProjects.length !== 1 ? t("projectsSection.projectPlural") : t("projectsSection.projectSingular")}
                         </p>
                     </div>
                     <BackButton label="Volver" />
@@ -101,13 +103,13 @@ export function Projects() {
                 <SearchBar
                     value={searchQuery}
                     onChange={setSearchQuery}
-                    placeholder="Buscar por nombre o descripción..."
+                    placeholder={t("projects.searchPlaceholder")}
                 />
 
                 {/* Filtro de tecnologías */}
                 <div className="mb-12">
                     <h3 className="text-sm uppercase tracking-widest font-semibold text-text-muted mb-4">
-                        Filtrar por tecnología
+                        {t("projects.filterByTech")}
                     </h3>
                     <TechFilter
                         availableTechs={availableTechs}

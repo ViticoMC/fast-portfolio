@@ -15,7 +15,7 @@ export function BackButton({ label = "Volver", className = "" }: BackButtonProps
 
     return (
         <motion.button
-            onClick={() => navigate(-1)}
+            onClick={() => navigate("/projects")}
             className={`flex items-center gap-2 px-6 py-3 rounded-lg border border-border hover:border-highlight-blue text-text-primary hover:text-highlight-blue font-semibold transition-all duration-300 hover:shadow-glow ${className}`}
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}

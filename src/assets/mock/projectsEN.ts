@@ -13,11 +13,13 @@ export const PROJECTSEN: Project[] = [
 
     image: "/projects/laboratorio.webp",
 
-    screenshots: [
-      "/projects/laboratorio/1.webp",
-      "/projects/laboratorio/2.webp",
-      "/projects/laboratorio/3.webp",
-    ],
+    // screenshots: [
+    //   "/projects/laboratorio/1.webp",
+    //   "/projects/laboratorio/2.webp",
+    //   "/projects/laboratorio/3.webp",
+    // ],
+
+    screenshots: [],
 
     technologies: [
       { name: "vitejs", title: "Vite" },
@@ -86,7 +88,8 @@ export const PROJECTSEN: Project[] = [
 
     image: "/projects/menu-online.webp",
 
-    screenshots: ["/projects/menu/1.webp", "/projects/menu/2.webp", "/projects/menu/3.webp"],
+    // screenshots: ["/projects/menu/1.webp", "/projects/menu/2.webp", "/projects/menu/3.webp"],
+    screenshots: [],
 
     technologies: [
       { name: "react", title: "React" },
@@ -155,7 +158,8 @@ export const PROJECTSEN: Project[] = [
 
     image: "/projects/cuadradito.webp",
 
-    screenshots: ["/projects/cuadradito/1.webp", "/projects/cuadradito/2.webp"],
+    // screenshots: ["/projects/cuadradito/1.webp", "/projects/cuadradito/2.webp"],
+    screenshots: [],
 
     technologies: [
       { name: "vitejs", title: "Vite" },
@@ -221,7 +225,8 @@ export const PROJECTSEN: Project[] = [
 
     image: "/projects/ecosistemas.webp",
 
-    screenshots: ["/projects/ecosistemas/1.webp", "/projects/ecosistemas/2.webp"],
+    // screenshots: ["/projects/ecosistemas/1.webp", "/projects/ecosistemas/2.webp"],
+    screenshots: [],
 
     technologies: [
       { name: "astro", title: "Astro" },

@@ -1,7 +1,7 @@
 export const es = {
   greeting: "Hola mundo",
-  welcome: "Bienvenido a Fast Portfolio",
-  footer: "© 2026 Fast Portfolio. Todos los derechos reservados.",
+  welcome: "Bienvenido a VictorMC Portfolio",
+  footer: "© 2026 VictorMC Portfolio. Todos los derechos reservados.",
   nav: {
     home: "Inicio",
     about: "Acerca de",
@@ -20,6 +20,20 @@ export const es = {
     loading: "Cargando...",
     error: "Ocurrió un error",
     success: "¡Éxito!",
+  },
+  common: {
+    avatar: "Avatar",
+    github: "GitHub",
+    linkedin: "LinkedIn",
+  },
+  projects: {
+    searchPlaceholder: "Buscar por nombre o descripción...",
+    filterByTech: "Filtrar por tecnología",
+  },
+  language: {
+    selectLanguage: "Cambiar idioma",
+    english: "English",
+    spanish: "Español",
   },
   hero: {
     badge: [
@@ -51,12 +65,34 @@ export const es = {
   projectsSection: {
     badge: "PORTAFOLIO",
     title: "Proyectos Personales",
+    allProjects: "Todos los Proyectos",
+    explore: "Explora",
+    projectSingular: "proyecto",
+    projectPlural: "proyectos",
     buttons: {
       demo: "DEMO",
       code: "CÓDIGO",
       status: "PRIVADO",
       details: "DETALLES",
     },
+  },
+  projectDetails: {
+    notFound: "Proyecto no encontrado",
+    projectNotFoundDesc: "El proyecto que buscas no existe.",
+    backToProjects: "Volver a Proyectos",
+    backToAllProjects: "Ver todos los proyectos",
+    fullDescription: "Descripción Completa",
+    gallery: "Galería de Imágenes",
+    technologiesUsed: "Tecnologías Utilizadas",
+    problemSolved: "Problema Resuelto",
+    projectArchitecture: "Arquitectura del Proyecto",
+    mainFeatures: "Características Principales",
+    technicalHighlights: "Aspectos Técnicos Destacables",
+    technicalChallenges: "Retos Técnicos Encontrados",
+    learnings: "Aprendizajes Obtenidos",
+    futureImprovements: "Posibles Mejoras Futuras",
+    problemResolved: "Problema que resolviste",
+    mainCharacteristics: "Características principales",
   },
   workExperienceSection: {
     badge: "EXPERIENCIA",
@@ -67,11 +103,44 @@ export const es = {
       mode: "Modalidad",
       responsibilities: "Tareas principales",
       achievements: "Resultados destacados",
+      gallery: "Galeria del trabajo",
     },
     modes: {
       solo: "Solo",
       team: "En equipo",
       hybrid: "Hibrido",
+    },
+  },
+  contactSection: {
+    badge: "CONTACTO",
+    title: "Déjame saber de ti",
+    description:
+      "¿Tienes un proyecto en mente? Me encantaría escuchar sobre él. Ponte en contacto conmigo y exploraremos juntos cómo puedo ayudarte.",
+    email: {
+      label: "Email",
+    },
+    phone: {
+      label: "Teléfono",
+      value: "+53 56643955",
+    },
+    location: {
+      label: "Ubicación",
+      value: "Cuba",
+    },
+    followUs: "Sígueme en",
+    form: {
+      name: "Nombre",
+      namePlaceholder: "Tu nombre",
+      email: "Email",
+      emailPlaceholder: "tu@email.com",
+      subject: "Asunto",
+      subjectPlaceholder: "¿Cuál es el tema?",
+      message: "Mensaje",
+      messagePlaceholder: "Cuéntame más sobre tu proyecto o idea...",
+      submit: "Enviar Mensaje",
+      sending: "Enviando...",
+      successMessage: "¡Gracias por tu mensaje! Te responderé pronto.",
+      errorMessage: "Hubo un error. Por favor intenta de nuevo.",
     },
   },
 } as const;

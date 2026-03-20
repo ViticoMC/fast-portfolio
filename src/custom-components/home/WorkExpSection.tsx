@@ -1,8 +1,10 @@
-import StackIcon from "tech-stack-icons";
 import { motion } from "framer-motion";
 import { useTranslation } from "react-i18next";
 import { useGetAllWorkExperience } from "@/hooks/useGetAllWorkExperience";
 import type { WorkExperience, WorkMode } from "@/types";
+import DemoButton from "@/custom-components/buttons/DemoButton";
+import TechTag from "../common/TechTag";
+import Stack from "@/components/Stack";
 
 const workModeStyles: Record<
     WorkMode,
@@ -31,14 +33,19 @@ function WorkExperienceCard({
     modeValue,
     responsibilitiesLabel,
     achievementsLabel,
+    demoLabel,
+    galleryLabel,
 }: {
     experience: WorkExperience;
     modeLabel: string;
     modeValue: string;
     responsibilitiesLabel: string;
     achievementsLabel: string;
+    demoLabel: string;
+    galleryLabel: string;
 }) {
     const modeStyle = workModeStyles[experience.workMode];
+    const galleryImages = experience.workImages ?? [];
 
     return (
         <motion.article
@@ -46,7 +53,7 @@ function WorkExperienceCard({
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, amount: 0.2 }}
             transition={{ duration: 0.45 }}
-            className="relative overflow-hidden rounded-3xl border border-white/10 bg-black/20 p-6 md:p-8 shadow-[0_0_40px_rgba(0,0,0,0.25)] backdrop-blur-md"
+            className="relative overflow-hidden rounded-3xl border border-white/10  p-6 md:p-8 shadow-[0_0_40px_rgba(0,0,0,0.25)] backdrop-blur-md"
         >
             <div className="absolute inset-x-0 top-0 h-px bg-linear-to-r from-transparent via-highlight-blue/60 to-transparent" />
 
@@ -69,7 +76,7 @@ function WorkExperienceCard({
                         </p>
                     </div>
 
-                    <p className="max-w-2xl text-sm md:text-base leading-relaxed text-text-muted">
+                    <p className=" text-sm md:text-base leading-relaxed text-text-muted">
                         {experience.summary}
                     </p>
                 </div>
@@ -80,10 +87,13 @@ function WorkExperienceCard({
                     >
                         {modeLabel}: {modeValue}
                     </span>
+                    {experience.demoUrl && (
+                        <DemoButton href={experience.demoUrl} label={demoLabel} />
+                    )}
                 </div>
             </div>
 
-            <div className="mt-8 grid gap-6 lg:grid-cols-[1.25fr_0.95fr]">
+            <div className="mt-8 flex flex-col gap-4">
                 <div className="grid gap-6 md:grid-cols-2">
                     <div className="rounded-2xl border border-white/10 bg-white/5 p-5">
                         <h4 className="text-sm font-semibold uppercase tracking-[0.22em] text-text-primary">
@@ -92,7 +102,7 @@ function WorkExperienceCard({
                         <ul className="mt-4 space-y-3 text-sm leading-relaxed text-text-muted">
                             {experience.responsibilities.map((item) => (
                                 <li key={item} className="flex gap-3">
-                                    <span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-highlight-blue" />
+                                    <span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-cyan-400" />
                                     <span>{item}</span>
                                 </li>
                             ))}
@@ -120,16 +130,38 @@ function WorkExperienceCard({
                     </h4>
                     <div className="mt-4 flex flex-wrap gap-3">
                         {experience.technologies.map((tech) => (
-                            <div
-                                key={`${experience.id}-${tech.name}`}
-                                className="group inline-flex items-center gap-3 rounded-2xl border border-white/10 bg-black/20 px-4 py-3 text-sm text-text-muted transition-all duration-300 hover:border-border-light hover:text-text-primary hover:shadow-glow"
-                            >
-                                <StackIcon name={tech.name} className="h-5 w-5" />
-                                <span>{tech.title}</span>
-                            </div>
+                            <TechTag key={`${experience.id}-${tech.name}`} tech={tech} />
                         ))}
                     </div>
                 </div>
+
+                {galleryImages.length > 0 && (
+                    <div className="rounded-2xl border border-white/10 bg-white/5 p-5 ">
+                        <h4 className="text-sm font-semibold uppercase tracking-[0.22em] text-text-primary">
+                            {galleryLabel}
+                        </h4>
+                        <div className="mt-4 grid grid-cols-1 gap-4  min-h-80">
+                            <Stack cards={galleryImages.map((image, index) => (
+                                <div
+                                    key={`${experience.id}-${image}-${index}`}
+                                    // href={image}
+                                    // target="_blank"
+                                    // rel="noopener noreferrer"
+                                    className="group relative overflow-hidden rounded-2xl border border-white/10 bg-black/20"
+                                >
+                                    <img
+                                        src={image}
+                                        alt={`${experience.company} ${galleryLabel} ${index + 1}`}
+                                        className="h-80 w-full object-cover  transition-transform duration-500 group-hover:scale-105"
+                                        loading="lazy"
+                                    />
+                                </div>
+                            ))}
+                                pauseOnHover={true}
+                            />
+                        </div>
+                    </div>
+                )}
             </div>
         </motion.article>
     );
@@ -140,7 +172,7 @@ export function WorkExpSection() {
     const { WORK_EXPERIENCES } = useGetAllWorkExperience();
 
     return (
-        <section className="w-full px-4 py-16">
+        <section className="w-full md:px-4 py-16">
             <div className="mx-auto max-w-7xl rounded-3xl border border-white/10 p-4 md:p-8 shadow-[0_0_40px_rgba(0,0,0,0.35)] backdrop-blur-md">
                 <motion.div
                     className="mb-12 text-center"
@@ -170,6 +202,8 @@ export function WorkExpSection() {
                             modeValue={t(`workExperienceSection.modes.${experience.workMode}`)}
                             responsibilitiesLabel={t("workExperienceSection.labels.responsibilities")}
                             achievementsLabel={t("workExperienceSection.labels.achievements")}
+                            demoLabel={t("projectsSection.buttons.demo")}
+                            galleryLabel={t("workExperienceSection.labels.gallery")}
                         />
                     ))}
                 </div>

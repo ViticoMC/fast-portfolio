@@ -37,7 +37,7 @@ export function TestProjectsSection() {
     const displayedProjects = PROJECTS.slice(0, 2);
 
     return (
-        <section className="w-full h-full  px-4 ">
+        <section className="w-full h-full  md:px-4 ">
             <div className="max-w-7xl mx-auto border-white/10 p-4 shadow-[0_0_40px_rgba(0,0,0,0.35)] rounded-3xl backdrop-blur-md">
                 {/* Header */}
                 <motion.div

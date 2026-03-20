@@ -7,6 +7,8 @@ import CodeButton from "@/custom-components/buttons/CodeButton";
 import type { Project } from "@/types";
 import { useGetAllprojects } from "@/hooks/useGetAllProjects";
 import { BackButton } from "@/custom-components/buttons/BackButton";
+import Stack from "@/components/Stack";
+import useScrollTop from "@/hooks/useScrollTop";
 
 /**
  * Página de detalle de proyecto
@@ -16,6 +18,7 @@ export function ProjectDetails() {
     const { projectId } = useParams<{ projectId: string }>();
     const navigate = useNavigate();
     const { t } = useTranslation();
+    useScrollTop();
 
     const { PROJECTS } = useGetAllprojects()
 
@@ -35,12 +38,12 @@ export function ProjectDetails() {
                     transition={{ duration: 0.5 }}
                 >
                     <h1 className="text-4xl font-bold text-text-primary mb-4">
-                        Proyecto no encontrado
+                        {t("projectDetails.notFound")}
                     </h1>
                     <p className="text-text-muted mb-8">
-                        El proyecto que buscas no existe.
+                        {t("projectDetails.projectNotFoundDesc")}
                     </p>
-                    <BackButton label="Ir a Proyectos" />
+                    <BackButton label={t("projectDetails.backToProjects")} />
                 </motion.div>
             </div>
         );
@@ -56,7 +59,7 @@ export function ProjectDetails() {
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.5 }}
                 >
-                    <BackButton label="Volver a Proyectos" />
+                    <BackButton label={t("projectDetails.backToProjects")} />
                 </motion.div>
 
                 {/* Image Hero */}
@@ -101,7 +104,7 @@ export function ProjectDetails() {
                     {/* Long Description Section */}
                     <section className="pb-8 border-b border-border">
                         <h2 className="text-2xl font-bold text-text-primary mb-4">
-                            Descripción Completa
+                            {t("projectDetails.fullDescription")}
                         </h2>
                         <p className="text-lg text-text-muted leading-relaxed">
                             {project.longDescription}
@@ -112,25 +115,28 @@ export function ProjectDetails() {
                     {project.screenshots && project.screenshots.length > 0 && (
                         <section className="pb-8 border-b border-border">
                             <h2 className="text-2xl font-bold text-text-primary mb-6">
-                                Galería de Imágenes
+                                {t("projectDetails.gallery")}
                             </h2>
-                            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                                {project.screenshots.map((screenshot, idx) => (
-                                    <motion.div
-                                        key={idx}
-                                        className="relative rounded-lg overflow-hidden h-64 md:h-80"
-                                        initial={{ opacity: 0, scale: 0.95 }}
-                                        animate={{ opacity: 1, scale: 1 }}
-                                        transition={{ duration: 0.4, delay: idx * 0.1 }}
-                                        whileHover={{ scale: 1.02 }}
-                                    >
-                                        <img
-                                            src={screenshot}
-                                            alt={`${project.title} screenshot ${idx + 1}`}
-                                            className="w-full h-full object-cover"
-                                        />
-                                    </motion.div>
-                                ))}
+                            <div className="mt-4 grid grid-cols-1 gap-4  min-h-80">
+                                <Stack
+                                    cards={project.screenshots.map((screenshot, idx) => (
+                                        <div
+                                            key={`${screenshot}-${idx}`}
+                                            // href={screenshot.image}
+                                            // target="_blank"
+                                            // rel="noopener noreferrer"
+                                            className="group relative overflow-hidden rounded-2xl border border-white/10 bg-black/20"
+                                        >
+                                            <img
+                                                src={screenshot}
+                                                alt="Foto de projecto"
+                                                className="h-80 w-full object-cover  transition-transform duration-500 group-hover:scale-105"
+                                                loading="lazy"
+                                            />
+                                        </div>
+                                    ))}
+                                />
+
                             </div>
                         </section>
                     )}
@@ -138,7 +144,7 @@ export function ProjectDetails() {
                     {/* Technologies Section */}
                     <section className="pb-8 border-b border-border">
                         <h2 className="text-2xl font-bold text-text-primary mb-6">
-                            Tecnologías Utilizadas
+                            {t("projectDetails.technologiesUsed")}
                         </h2>
                         <div className="flex flex-wrap gap-4">
                             {project.technologies.map((tech, idx) => (
@@ -164,7 +170,7 @@ export function ProjectDetails() {
                     {/* Problem Section */}
                     <section className="pb-8 border-b border-border">
                         <h2 className="text-2xl font-bold text-text-primary mb-4">
-                            Problema Resuelto
+                            {t("projectDetails.problemSolved")}
                         </h2>
                         <div className="p-6 rounded-lg bg-highlight-blue/5 border border-highlight-blue/20">
                             <p className="text-lg text-text-muted italic">
@@ -177,7 +183,7 @@ export function ProjectDetails() {
                     {project.architecture && project.architecture.length > 0 && (
                         <section className="pb-8 border-b border-border">
                             <h2 className="text-2xl font-bold text-text-primary mb-6">
-                                Arquitectura del Proyecto
+                                {t("projectDetails.projectArchitecture")}
                             </h2>
                             <ul className="space-y-3">
                                 {project.architecture.map((arch, idx) => (
@@ -203,7 +209,7 @@ export function ProjectDetails() {
                     {/* Features Section */}
                     <section className="pb-8 border-b border-border">
                         <h2 className="text-2xl font-bold text-text-primary mb-6">
-                            Características Principales
+                            {t("projectDetails.mainFeatures")}
                         </h2>
                         <ul className="space-y-4">
                             {project.features.map((feature, idx) => (
@@ -229,7 +235,7 @@ export function ProjectDetails() {
                     {project.technicalHighlights && project.technicalHighlights.length > 0 && (
                         <section className="pb-8 border-b border-border">
                             <h2 className="text-2xl font-bold text-text-primary mb-6">
-                                Aspectos Técnicos Destacables
+                                {t("projectDetails.technicalHighlights")}
                             </h2>
                             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                                 {project.technicalHighlights.map((highlight, idx) => (
@@ -254,7 +260,7 @@ export function ProjectDetails() {
                     {project.challenges && project.challenges.length > 0 && (
                         <section className="pb-8 border-b border-border">
                             <h2 className="text-2xl font-bold text-text-primary mb-6">
-                                Retos Técnicos Encontrados
+                                {t("projectDetails.technicalChallenges")}
                             </h2>
                             <ul className="space-y-3">
                                 {project.challenges.map((challenge, idx) => (
@@ -281,7 +287,7 @@ export function ProjectDetails() {
                     {project.learnings && project.learnings.length > 0 && (
                         <section className="pb-8 border-b border-border">
                             <h2 className="text-2xl font-bold text-text-primary mb-6">
-                                Aprendizajes Obtenidos
+                                {t("projectDetails.learnings")}
                             </h2>
                             <ul className="space-y-3">
                                 {project.learnings.map((learning, idx) => (
@@ -308,7 +314,7 @@ export function ProjectDetails() {
                     {project.futureImprovements && project.futureImprovements.length > 0 && (
                         <section className="pb-8 border-b border-border">
                             <h2 className="text-2xl font-bold text-text-primary mb-6">
-                                Posibles Mejoras Futuras
+                                {t("projectDetails.futureImprovements")}
                             </h2>
                             <ul className="space-y-3">
                                 {project.futureImprovements.map((improvement, idx) => (
@@ -374,7 +380,7 @@ export function ProjectDetails() {
                                     d="M15 19l-7-7 7-7"
                                 />
                             </svg>
-                            Ver todos los proyectos
+                            {t("projectDetails.backToAllProjects")}
                         </button>
                     </motion.div>
                 </motion.div>

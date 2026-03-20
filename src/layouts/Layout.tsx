@@ -2,15 +2,17 @@ import { Outlet } from "react-router-dom";
 import Silk from "@/components/Silk";
 import { useTheme } from "@/hooks/useTheme";
 import { ControlsBar } from "@/custom-components/ControlsBar";
+import { useTranslation } from "react-i18next";
 
 export function Layout() {
 
     const { isMounted, theme } = useTheme(); // Extraemos 'theme' del hook
+    const { t } = useTranslation();
 
     if (!isMounted) {
         return (
             <div className="w-full h-screen flex items-center justify-center">
-                <div className="animate-pulse text-text-primary">Loading...</div>
+                <div className="animate-pulse text-text-primary">{t("messages.loading")}</div>
             </div>
         );
     }

@@ -24,6 +24,7 @@ export function HeroSection() {
   const { t, i18n } = useTranslation();
 
   const data = t("hero", { returnObjects: true });
+  const avatarAlt = t("common.avatar");
 
 
   return (
@@ -39,7 +40,7 @@ export function HeroSection() {
           <div className="w-24 h-24 md:w-32 md:h-32 rounded-full border-2 border-highlight-blue/60 overflow-hidden shadow-glow hover:shadow-glow hover:scale-[1.05] transition-all duration-300">
             <img
               src="/my-skin.webp"
-              alt="Avatar"
+              alt={avatarAlt}
               className="w-full h-full object-cover"
             />
           </div>

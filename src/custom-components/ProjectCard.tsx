@@ -2,10 +2,10 @@ import type { Project } from "@/types";
 import { motion, type Variants } from "framer-motion";
 import { useTranslation } from "react-i18next";
 import { useNavigate } from "react-router-dom";
-import StackIcon from "tech-stack-icons";
 import DemoButton from "./buttons/DemoButton";
 import CodeButton from "./buttons/CodeButton";
 import DetailsButton from "./buttons/DetailsButton";
+import TechTag from "./common/TechTag";
 
 interface ProjectCardProps {
     project: Project;
@@ -50,23 +50,14 @@ export function ProjectCard({ project, variants }: ProjectCardProps) {
                 {/* Technologies */}
                 <div className="flex flex-wrap gap-3 mb-8">
                     {project.technologies.map((tech) => (
-                        <div
-                            key={tech.title}
-                            className="group/tech hover:scale-[1.1] flex items-center gap-2 px-3 py-1.5 rounded-lg bg-foreground/10 border border-border hover:border-highlight-blue/50 transition-all"
-                            title={tech.title}
-                        >
-                            <StackIcon name={tech.name} className="w-4 h-4" />
-                            <span className="text-xs font-medium text-text-muted  transition-all">
-                                {tech.title}
-                            </span>
-                        </div>
+                        <TechTag key={`${project.id}-${tech.name}`} tech={tech} />
                     ))}
                 </div>
 
                 {/* Problem Section */}
                 <div className="mb-6 pb-6 border-b border-border">
                     <h4 className="text-xs uppercase tracking-widest font-semibold text-text-muted mb-3">
-                        Problema que resolviste
+                        {t("projectDetails.problemResolved")}
                     </h4>
                     <p className="text-sm text-text-muted/80 italic leading-relaxed">
                         "{project.problem}"
@@ -76,7 +67,7 @@ export function ProjectCard({ project, variants }: ProjectCardProps) {
                 {/* Features Section */}
                 <div className="mb-8">
                     <h4 className="text-xs uppercase tracking-widest font-semibold text-text-muted mb-4">
-                        Características principales
+                        {t("projectDetails.mainCharacteristics")}
                     </h4>
                     <ul className="space-y-3">
                         {project.features.map((feature, idx) => (
