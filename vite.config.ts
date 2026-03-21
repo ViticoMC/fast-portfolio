@@ -11,10 +11,6 @@ export default defineConfig({
       "@": path.resolve(__dirname, "./src"),
     },
   },
-  server: {
-    // Ensure sitemap.xml and robots.txt are served correctly in dev mode
-    staticDir: ["public"],
-  },
   build: {
     // Ensure public assets are copied to dist
     copyPublicDir: true,
