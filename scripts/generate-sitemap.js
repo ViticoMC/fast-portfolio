@@ -9,7 +9,7 @@ const __dirname = path.dirname(fileURLToPath(import.meta.url));
  * Generates sitemap.xml from routes and project data
  */
 
-const SITE_URL = process.env.VITE_SITE_URL || "https://victor-portfolio.dev";
+const SITE_URL = process.env.VITE_SITE_URL || "https://viticomc-porftolio.vercel.app/";
 const PUBLIC_DIR = path.join(__dirname, "../public");
 
 // Static routes
