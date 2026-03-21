@@ -4,8 +4,10 @@
     <meta charset="UTF-8" />
     <link rel="icon" type="image/webp" href="/my-skin.webp" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+
+    <!-- Primary Meta Tags -->
     <title>Victor | Frontend Developer Portfolio</title>
-    <meta name="google-site-verification" content="CiX_NM8s5PFxOHH1Vx0GcxfUlq9fgSPWUg4Kr6gjVyY" />
     <meta
       name="description"
       content="Portafolio de Victor, desarrollador frontend especializado en React, Next.js y TypeScript. Interfaces modernas, rápidas y centradas en el usuario."
@@ -15,12 +17,28 @@
       content="Victor, portafolio, frontend developer, React, Next.js, TypeScript, desarrollo web, UI, UX"
     />
     <meta name="author" content="Victor" />
-    <meta name="robots" content="index, follow" />
+    <meta
+      name="robots"
+      content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1"
+    />
+    <meta name="google-site-verification" content="CiX_NM8s5PFxOHH1Vx0GcxfUlq9fgSPWUg4Kr6gjVyY" />
+
+    <!-- Canonical URL -->
+    <link rel="canonical" href="https://viticomc-porftolio.vercel.app/" />
+
+    <!-- Alternate Language Links -->
+    <link rel="alternate" hreflang="es" href="https://viticomc-porftolio.vercel.app/" />
+    <link rel="alternate" hreflang="en" href="https://viticomc-porftolio.vercel.app/en" />
+    <link rel="alternate" hreflang="x-default" href="https://viticomc-porftolio.vercel.app/" />
+
+    <!-- Theme and Visual -->
     <meta name="theme-color" content="#000000" />
     <meta name="color-scheme" content="dark light" />
     <meta name="format-detection" content="telephone=no, address=no, email=no" />
 
+    <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://viticomc-porftolio.vercel.app/" />
     <meta property="og:site_name" content="Victor Portfolio" />
     <meta property="og:title" content="Victor | Frontend Developer Portfolio" />
     <meta
@@ -29,16 +47,60 @@
     />
     <meta property="og:locale" content="es_ES" />
     <meta property="og:locale:alternate" content="en_US" />
-    <meta property="og:image" content="/my-skin.webp" />
+    <meta property="og:image" content="https://viticomc-porftolio.vercel.app/my-skin.webp" />
     <meta property="og:image:alt" content="Avatar de Victor" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
 
+    <!-- Twitter -->
     <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:url" content="https://viticomc-porftolio.vercel.app/" />
     <meta name="twitter:title" content="Victor | Frontend Developer Portfolio" />
     <meta
       name="twitter:description"
       content="Portafolio de Victor con proyectos frontend modernos construidos con React, Next.js y TypeScript."
     />
-    <meta name="twitter:image" content="/my-skin.webp" />
+    <meta name="twitter:image" content="https://viticomc-porftolio.vercel.app/my-skin.webp" />
+    <meta name="twitter:creator" content="@victor_dev" />
+
+    <!-- Sitemap & RSS -->
+    <link rel="sitemap" type="application/xml" href="/sitemap.xml" />
+
+    <!-- JSON-LD Schema -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org/",
+        "@type": "Person",
+        "name": "Victor",
+        "url": "https://viticomc-porftolio.vercel.app",
+        "image": "https://viticomc-porftolio.vercel.app/my-skin.webp",
+        "jobTitle": "Frontend Developer",
+        "sameAs": [],
+        "knowsAbout": ["React", "Next.js", "TypeScript", "Frontend Development"],
+        "workLocation": {
+          "@type": "Place",
+          "name": "Remote"
+        }
+      }
+    </script>
+
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "WebSite",
+        "name": "Victor Portfolio",
+        "url": "https://viticomc-porftolio.vercel.app/",
+        "potentialAction": {
+          "@type": "SearchAction",
+          "target": {
+            "@type": "EntryPoint",
+            "urlTemplate": "https://viticomc-porftolio.vercel.app/projects?search={search_term_string}"
+          },
+          "query-input": "required name=search_term_string"
+        }
+      }
+    </script>
+
     <link href="/src/index.css" rel="stylesheet" />
   </head>
   <body>
