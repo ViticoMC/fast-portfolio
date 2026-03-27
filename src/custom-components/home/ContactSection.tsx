@@ -1,65 +1,65 @@
 import { motion } from "framer-motion";
 import { useTranslation } from "react-i18next";
 import { Mail, Phone, MapPin } from "lucide-react";
-import { useState } from "react";
+// import { useState } from "react";
 
 export function ContactSection() {
     const { t } = useTranslation();
-    const [formData, setFormData] = useState({
-        name: "",
-        email: "",
-        subject: "",
-        message: "",
-    });
-    const [isSubmitting, setIsSubmitting] = useState(false);
-    const [submitStatus, setSubmitStatus] = useState<"idle" | "success" | "error">("idle");
+    // const [formData, setFormData] = useState({
+    //     name: "",
+    //     email: "",
+    //     subject: "",
+    //     message: "",
+    // });
+    // const [isSubmitting, setIsSubmitting] = useState(false);
+    // const [submitStatus, setSubmitStatus] = useState<"idle" | "success" | "error">("idle");
 
-    const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-        const { name, value } = e.target;
-        setFormData(prev => ({
-            ...prev,
-            [name]: value
-        }));
-    };
+    // const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    //     const { name, value } = e.target;
+    //     setFormData(prev => ({
+    //         ...prev,
+    //         [name]: value
+    //     }));
+    // };
 
-    const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
-        e.preventDefault();
-        setIsSubmitting(true);
-        setSubmitStatus("idle");
+    // const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    //     e.preventDefault();
+    //     setIsSubmitting(true);
+    //     setSubmitStatus("idle");
 
-        try {
-            // Simular envío de formulario
-            // En un caso real, aquí irías a un endpoint de tu servidor
-            await new Promise(resolve => setTimeout(resolve, 1000));
+    //     try {
+    //         // Simular envío de formulario
+    //         // En un caso real, aquí irías a un endpoint de tu servidor
+    //         await new Promise(resolve => setTimeout(resolve, 1000));
 
-            // Abrir cliente de email con los datos del formulario
-            const subject = encodeURIComponent(formData.subject);
-            const body = encodeURIComponent(
-                `Nombre: ${formData.name}\nEmail: ${formData.email}\n\n${formData.message}`
-            );
-            window.location.href = `mailto:victormanuelmartinezcampo178@gmail.com?subject=${subject}&body=${body}`;
+    //         // Abrir cliente de email con los datos del formulario
+    //         const subject = encodeURIComponent(formData.subject);
+    //         const body = encodeURIComponent(
+    //             `Nombre: ${formData.name}\nEmail: ${formData.email}\n\n${formData.message}`
+    //         );
+    //         window.location.href = `mailto:victormanuelmartinezcampo178@gmail.com?subject=${subject}&body=${body}`;
 
-            setSubmitStatus("success");
-            setFormData({
-                name: "",
-                email: "",
-                subject: "",
-                message: "",
-            });
+    //         setSubmitStatus("success");
+    //         setFormData({
+    //             name: "",
+    //             email: "",
+    //             subject: "",
+    //             message: "",
+    //         });
 
-            setTimeout(() => {
-                setSubmitStatus("idle");
-            }, 3000);
-        } catch (error) {
-            setSubmitStatus("error");
-            setTimeout(() => {
-                setSubmitStatus("idle");
-            }, 3000);
-            console.log("Error al enviar el formulario:", error);
-        } finally {
-            setIsSubmitting(false);
-        }
-    };
+    //         setTimeout(() => {
+    //             setSubmitStatus("idle");
+    //         }, 3000);
+    //     } catch (error) {
+    //         setSubmitStatus("error");
+    //         setTimeout(() => {
+    //             setSubmitStatus("idle");
+    //         }, 3000);
+    //         console.log("Error al enviar el formulario:", error);
+    //     } finally {
+    //         setIsSubmitting(false);
+    //     }
+    // };
 
     const data = t("contactSection", { returnObjects: true });
 
@@ -183,7 +183,7 @@ export function ContactSection() {
                     </motion.div>
 
                     {/* Contact Form */}
-                    <motion.div
+                    {/* <motion.div
                         initial={{ opacity: 0, x: 20 }}
                         whileInView={{ opacity: 1, x: 0 }}
                         viewport={{ once: true, amount: 0.3 }}
@@ -191,7 +191,6 @@ export function ContactSection() {
                         className="rounded-xl border border-white/10  p-6 md:p-8 backdrop-blur-md shadow-[0_0_30px_rgba(0,0,0,0.25)]"
                     >
                         <form onSubmit={handleSubmit} className="space-y-4">
-                            {/* Name */}
                             <div>
                                 <label htmlFor="name" className="block text-sm font-medium text-text-primary mb-2">
                                     {data.form.name}
@@ -208,7 +207,6 @@ export function ContactSection() {
                                 />
                             </div>
 
-                            {/* Email */}
                             <div>
                                 <label htmlFor="email" className="block text-sm font-medium text-text-primary mb-2">
                                     {data.form.email}
@@ -225,7 +223,6 @@ export function ContactSection() {
                                 />
                             </div>
 
-                            {/* Subject */}
                             <div>
                                 <label htmlFor="subject" className="block text-sm font-medium text-text-primary mb-2">
                                     {data.form.subject}
@@ -242,7 +239,6 @@ export function ContactSection() {
                                 />
                             </div>
 
-                            {/* Message */}
                             <div>
                                 <label htmlFor="message" className="block text-sm font-medium text-text-primary mb-2">
                                     {data.form.message}
@@ -259,7 +255,6 @@ export function ContactSection() {
                                 />
                             </div>
 
-                            {/* Submit Status */}
                             {submitStatus === "success" && (
                                 <motion.div
                                     initial={{ opacity: 0, y: -10 }}
@@ -280,7 +275,6 @@ export function ContactSection() {
                                 </motion.div>
                             )}
 
-                            {/* Submit Button */}
                             <button
                                 type="submit"
                                 disabled={isSubmitting}
@@ -289,7 +283,7 @@ export function ContactSection() {
                                 {isSubmitting ? data.form.sending : data.form.submit}
                             </button>
                         </form>
-                    </motion.div>
+                    </motion.div> */}
                 </div>
             </motion.div>
         </section>
