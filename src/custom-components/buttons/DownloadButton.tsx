@@ -4,10 +4,15 @@ interface Props {
 }
 export default function DownloadButton({ text, className }: Props) {
     return (
-        <button className={`group px-8 hover:scale-[1.1] py-3   border border-border rounded-lg text-text-primary font-medium transition-all duration-300 flex items-center gap-2 ${className}`}>
+
+        <a
+            href="/VICTOR-CVE.docx"
+            download={true}
+            className={`group px-8 hover:scale-[1.1] py-3   border border-border rounded-lg text-text-primary font-medium transition-all duration-300 flex items-center gap-2 ${className}`} >
+
             {text}
 
-            <svg
+            < svg
                 className="w-4 h-4 transition-transform duration-300 group-hover:translate-y-1 group-hover:scale-110"
                 fill="none"
                 stroke="currentColor"
@@ -35,6 +40,6 @@ export default function DownloadButton({ text, className }: Props) {
                     d="M8 12l4 4 4-4"
                 />
             </svg>
-        </button>
+        </a >
     )
 }

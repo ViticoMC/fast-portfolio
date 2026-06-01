@@ -23,6 +23,18 @@ export const ROUTES = {
   HOME: "/",
   PROJECTS: "/projects",
   PROJECT_DETAIL: (id: number | string) => `/projects/${id}`,
+  NOT_FOUND: "/404",
+};
+
+export const SEO_PAGES = {
+  HOME: {
+    title: { es: "Victor | Frontend Developer Portfolio", en: "Victor | Frontend Developer Portfolio" },
+    description: { es: "Portafolio de Victor, desarrollador frontend especializado en React, Next.js y TypeScript.", en: "Victor's portfolio, frontend developer specializing in React, Next.js and TypeScript." },
+  },
+  NOT_FOUND: {
+    title: { es: "Página no encontrada - Victor Portfolio", en: "Page Not Found - Victor Portfolio" },
+    description: { es: "La página que buscas no existe o ha sido movida. Regresa al inicio del portafolio de Victor.", en: "The page you're looking for doesn't exist or has been moved. Return to Victor's portfolio home." },
+  },
 };
 
 // Helper function to generate full URLs

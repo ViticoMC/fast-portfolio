@@ -1,12 +1,19 @@
+import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
 import { useTranslation } from "react-i18next";
 import useScrollTop from "@/hooks/useScrollTop";
+import { SEO_PAGES } from "@/config/seo";
 
 export default function NotFound() {
     const navigate = useNavigate();
-    const { t } = useTranslation();
+    const { t, i18n } = useTranslation();
     useScrollTop();
+
+    useEffect(() => {
+        const lang = i18n.language as keyof typeof SEO_PAGES.NOT_FOUND.title;
+        document.title = SEO_PAGES.NOT_FOUND.title[lang] || SEO_PAGES.NOT_FOUND.title.en;
+    }, [i18n.language]);
 
     return (
         <div className="min-h-screen flex items-center justify-center pt-24 pb-16 px-4">
