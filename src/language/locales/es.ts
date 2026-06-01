@@ -1,4 +1,9 @@
 export const es = {
+  notFound: {
+    title: "Página no encontrada",
+    description: "La página que buscas no existe o ha sido movida.",
+    backHome: "Volver al inicio",
+  },
   greeting: "Hola mundo",
   welcome: "Bienvenido a VictorMC Portfolio",
   footer: "© 2026 VictorMC Portfolio. Todos los derechos reservados.",

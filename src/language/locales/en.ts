@@ -1,4 +1,9 @@
 export const en = {
+  notFound: {
+    title: "Page Not Found",
+    description: "The page you're looking for doesn't exist or has been moved.",
+    backHome: "Back to Home",
+  },
   greeting: "Hello world",
   welcome: "Welcome to VictorMC Portfolio",
   footer: "© 2026 VictorMC Portfolio. All rights reserved.",
