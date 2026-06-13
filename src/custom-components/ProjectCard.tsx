@@ -1,5 +1,5 @@
 import type { Project } from "@/types";
-import { motion, type Variants } from "framer-motion";
+import { motion, type Variants } from "motion/react";
 import { useTranslation } from "react-i18next";
 import { useNavigate } from "react-router-dom";
 import DemoButton from "./buttons/DemoButton";
@@ -8,88 +8,56 @@ import DetailsButton from "./buttons/DetailsButton";
 import TechTag from "./common/TechTag";
 
 interface ProjectCardProps {
-    project: Project;
-    variants: Variants;
+  project: Project;
+  variants: Variants;
 }
 
 export function ProjectCard({ project, variants }: ProjectCardProps) {
-    const { t } = useTranslation();
-    const navigate = useNavigate();
+  const { t } = useTranslation();
+  const navigate = useNavigate();
 
-    const handleDetailsClick = () => {
-        navigate(`/projects/${project.id}`);
-    };
+  const handleDetailsClick = () => {
+    navigate(`/projects/${project.id}`);
+  };
 
-    return (
-        <motion.div
-            className="backdrop-blur-xl  group relative rounded-3xl border border-border  bg-background/40 hover:border-border-light transition-all duration-300 hover:shadow-glow  "
-            variants={variants}
-        >
-            {/* Project Image */}
-            <div className="relative rounded-t-2xl h-64 md:h-80 overflow-hidden ">
-                <img
-                    src={project.image}
-                    alt={project.title}
-                    className="w-full  h-full object-cover group-hover:scale-105 transition-transform duration-500"
-                />
-                <div className="absolute inset-0 bg-linear-to-t from-foreground/10 via-transparent to-transparent"></div>
-            </div>
+  return (
+    <motion.div
+      className="group relative rounded-2xl border border-border-base bg-paper-elevated/50 overflow-hidden hover:border-copper/20 transition-all duration-500 flex flex-col"
+      variants={variants}
+    >
+      <div className="relative h-56 md:h-64 overflow-hidden">
+        <img
+          src={project.image}
+          alt={project.title}
+          className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+        />
+        <div className="absolute inset-0 bg-linear-to-t from-paper/40 via-transparent to-transparent" />
+      </div>
 
-            {/* Project Content */}
-            <div className="p-8 flex flex-col justify-between ">
-                {/* Header Content */}
-                <div className="mb-6">
-                    <h3 className="text-2xl md:text-3xl font-bold text-text-primary mb-2  transition-colors">
-                        {project.title}
-                    </h3>
-                    <p className="text-text-muted text-sm md:text-base leading-relaxed line-clamp-4">
-                        {project.description}
-                    </p>
-                </div>
+      <div className="p-6 md:p-8 flex flex-col flex-1">
+        <div className="flex-1 space-y-4">
+          <div>
+            <h3 className="text-xl md:text-2xl font-serif text-fg-base tracking-tight">
+              {project.title}
+            </h3>
+            <p className="mt-2 text-sm text-fg-muted leading-relaxed line-clamp-3">
+              {project.description}
+            </p>
+          </div>
 
-                {/* Technologies */}
-                <div className="flex flex-wrap gap-3 mb-8">
-                    {project.technologies.map((tech) => (
-                        <TechTag key={`${project.id}-${tech.name}`} tech={tech} />
-                    ))}
-                </div>
+          <div className="flex flex-wrap gap-2">
+            {project.technologies.slice(0, 6).map((tech) => (
+              <TechTag key={`${project.id}-${tech.name}`} tech={tech} />
+            ))}
+          </div>
+        </div>
 
-                {/* Problem Section */}
-                <div className="mb-6 pb-6 border-b border-border">
-                    <h4 className="text-xs uppercase tracking-widest font-semibold text-text-muted mb-3">
-                        {t("projectDetails.problemResolved")}
-                    </h4>
-                    <p className="text-sm text-text-muted/80 italic leading-relaxed">
-                        "{project.problem}"
-                    </p>
-                </div>
-
-                {/* Features Section */}
-                <div className="mb-8">
-                    <h4 className="text-xs uppercase tracking-widest font-semibold text-text-muted mb-4">
-                        {t("projectDetails.mainCharacteristics")}
-                    </h4>
-                    <ul className="space-y-3">
-                        {project.features.map((feature, idx) => (
-                            <li key={idx} className="flex items-start gap-3">
-                                <span className="shrink-0 w-5 h-5 rounded-full bg-highlight-blue/20 border border-highlight-blue/50 flex items-center justify-center mt-0.5">
-                                    <span className="w-2 h-2 rounded-full bg-highlight-blue"></span>
-                                </span>
-                                <span className="text-sm text-text-muted leading-relaxed">
-                                    {feature}
-                                </span>
-                            </li>
-                        ))}
-                    </ul>
-                </div>
-
-                {/* Buttons */}
-                <div className="flex gap-3">
-                    <DemoButton href={project.demoUrl} label={t('projectsSection.buttons.demo')} />
-                    <CodeButton href={project.codeUrl} label={t('projectsSection.buttons.code')} />
-                    <DetailsButton onClick={handleDetailsClick} label={t('projectsSection.buttons.details')} />
-                </div>
-            </div>
-        </motion.div>
-    );
+        <div className="flex flex-wrap gap-2 pt-6 mt-auto border-t border-border-base">
+          <DemoButton href={project.demoUrl} label={t("projectsSection.buttons.demo")} />
+          <CodeButton href={project.codeUrl} label={t("projectsSection.buttons.code")} />
+          <DetailsButton onClick={handleDetailsClick} label={t("projectsSection.buttons.details")} />
+        </div>
+      </div>
+    </motion.div>
+  );
 }

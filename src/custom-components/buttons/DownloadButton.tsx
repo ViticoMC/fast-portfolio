@@ -1,45 +1,24 @@
 interface Props {
-    text: string;
-    className?: string;
+  text: string;
 }
-export default function DownloadButton({ text, className }: Props) {
-    return (
 
-        <a
-            href="/VICTOR-CVE.docx"
-            download={true}
-            className={`group px-8 hover:scale-[1.1] py-3   border border-border rounded-lg text-text-primary font-medium transition-all duration-300 flex items-center gap-2 ${className}`} >
-
-            {text}
-
-            < svg
-                className="w-4 h-4 transition-transform duration-300 group-hover:translate-y-1 group-hover:scale-110"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-            >
-                <path
-                    className="transition-all duration-300"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1"
-                />
-                <path
-                    className="transition-transform duration-300 group-hover:translate-y-[0.4] "
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M12 4v12"
-                />
-                <path
-                    className="transition-transform duration-300 group-hover:translate-y-[0.4] "
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M8 12l4 4 4-4"
-                />
-            </svg>
-        </a >
-    )
+export default function DownloadButton({ text }: Props) {
+  return (
+    <a
+      href="/VICTOR-CVE.docx"
+      download
+      className="group inline-flex items-center gap-2 px-5 py-3 rounded-full border border-border-base text-sm font-medium text-fg-muted hover:text-fg-base hover:border-copper transition-all duration-300 active:scale-[0.97]"
+    >
+      {text}
+      <svg
+        className="w-4 h-4 transition-transform duration-300 group-hover:translate-y-0.5"
+        fill="none"
+        stroke="currentColor"
+        viewBox="0 0 24 24"
+        strokeWidth={1.5}
+      >
+        <path strokeLinecap="round" strokeLinejoin="round" d="M3 16.5v2.25A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75V16.5M16.5 12L12 16.5m0 0L7.5 12m4.5 4.5V3" />
+      </svg>
+    </a>
+  );
 }

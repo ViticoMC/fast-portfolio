@@ -39,12 +39,8 @@ function applyTheme(theme: Theme) {
   root.classList.remove("light", "dark");
   root.classList.add(theme);
 
-  if (typeof window !== "undefined" && import.meta.env.NODE_ENV === "development") {
-    const computedStyle = getComputedStyle(root);
-    const primaryColor = computedStyle.getPropertyValue("--primary");
-    console.log(`🎨 Theme applied: ${theme}`, {
-      primaryColor: primaryColor.trim(),
-      rootClasses: Array.from(root.classList),
-    });
+  if (typeof window !== "undefined" && import.meta.env.DEV) {
+    const rootClasses = Array.from(root.classList);
+    console.log(`Theme: ${theme}`, { rootClasses });
   }
 }

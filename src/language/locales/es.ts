@@ -9,9 +9,9 @@ export const es = {
   footer: "© 2026 VictorMC Portfolio. Todos los derechos reservados.",
   nav: {
     home: "Inicio",
-    about: "Acerca de",
-    portfolio: "Portafolio",
-    contact: "Contacto",
+    projects: "Proyectos",
+    menu: "Menú",
+    close: "Cerrar",
   },
   buttons: {
     language: "Idioma",
@@ -26,6 +26,9 @@ export const es = {
     error: "Ocurrió un error",
     success: "¡Éxito!",
   },
+  theme: {
+    toggle: "Cambiar tema",
+  },
   common: {
     avatar: "Avatar",
     github: "GitHub",
@@ -37,6 +40,7 @@ export const es = {
   },
   language: {
     selectLanguage: "Cambiar idioma",
+    switch: "Cambiar idioma",
     english: "English",
     spanish: "Español",
   },

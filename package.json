@@ -11,6 +11,10 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@fontsource-variable/jetbrains-mono": "^5.2.8",
+    "@fontsource-variable/outfit": "^5.2.8",
+    "@fontsource-variable/plus-jakarta-sans": "^5.2.8",
+    "@fontsource/playfair-display": "^5.2.8",
     "@react-three/fiber": "^9.5.0",
     "@tailwindcss/vite": "^4.2.1",
     "class-variance-authority": "^0.7.1",

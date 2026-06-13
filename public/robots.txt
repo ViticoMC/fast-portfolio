@@ -3,7 +3,7 @@ User-agent: *
 Allow: /
 
 # Sitemaps
-Sitemap: https://viticomc-porftolio.vercel.app/sitemap.xml
+Sitemap: https://viticomc-porftolio.vercel.app//sitemap.xml
 
 # Disallow private routes if any
 # Disallow: /admin

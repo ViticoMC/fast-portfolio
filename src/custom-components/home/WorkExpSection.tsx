@@ -1,213 +1,114 @@
-import { motion } from "framer-motion";
+import { motion } from "motion/react";
 import { useTranslation } from "react-i18next";
 import { useGetAllWorkExperience } from "@/hooks/useGetAllWorkExperience";
 import type { WorkExperience, WorkMode } from "@/types";
-import DemoButton from "@/custom-components/buttons/DemoButton";
 import TechTag from "../common/TechTag";
-import Stack from "@/components/Stack";
 
-const workModeStyles: Record<
-    WorkMode,
-    {
-        badgeClassName: string;
-        dotClassName: string;
-    }
-> = {
-    team: {
-        badgeClassName: "border-cyan-400/30 bg-cyan-500/10 text-cyan-200",
-        dotClassName: "bg-cyan-400",
-    },
-    solo: {
-        badgeClassName: "border-amber-400/30 bg-amber-500/10 text-amber-200",
-        dotClassName: "bg-amber-400",
-    },
-    hybrid: {
-        badgeClassName: "border-violet-400/30 bg-violet-500/10 text-violet-200",
-        dotClassName: "bg-violet-400",
-    },
+const workModeStyles: Record<WorkMode, { dot: string }> = {
+  team: { dot: "bg-copper" },
+  solo: { dot: "bg-copper/60" },
+  hybrid: { dot: "bg-copper/80" },
 };
 
-function WorkExperienceCard({
-    experience,
-    modeLabel,
-    modeValue,
-    responsibilitiesLabel,
-    achievementsLabel,
-    demoLabel,
-    galleryLabel,
-}: {
-    experience: WorkExperience;
-    modeLabel: string;
-    modeValue: string;
-    responsibilitiesLabel: string;
-    achievementsLabel: string;
-    demoLabel: string;
-    galleryLabel: string;
-}) {
-    const modeStyle = workModeStyles[experience.workMode];
-    const galleryImages = experience.workImages ?? [];
+function WorkCard({ experience, labels }: { experience: WorkExperience; labels: Record<string, string> }) {
+  const modeStyle = workModeStyles[experience.workMode];
 
-    return (
-        <motion.article
-            initial={{ opacity: 0, y: 24 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, amount: 0.2 }}
-            transition={{ duration: 0.45 }}
-            className="relative overflow-hidden rounded-3xl border border-white/10  p-6 md:p-8 shadow-[0_0_40px_rgba(0,0,0,0.25)] backdrop-blur-md"
-        >
-            <div className="absolute inset-x-0 top-0 h-px bg-linear-to-r from-transparent via-highlight-blue/60 to-transparent" />
+  return (
+    <motion.article
+      initial={{ opacity: 0, y: 20 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, amount: 0.15 }}
+      transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
+      className="relative pl-8 md:pl-12 pb-12 last:pb-0"
+    >
+      <div className="absolute left-0 top-2 bottom-0 w-px bg-border-base last:hidden" />
+      <div className={`absolute left-[-3.5px] top-2 w-[7px] h-[7px] rounded-full ${modeStyle.dot} ring-2 ring-paper`} />
 
-            <div className="flex flex-col gap-6 lg:flex-row lg:items-start lg:justify-between">
-                <div className="max-w-3xl space-y-4">
-                    <div className="flex flex-wrap items-center gap-3 text-xs uppercase tracking-[0.24em] text-text-muted">
-                        <span className="inline-flex items-center gap-2">
-                            <span className={`h-2 w-2 rounded-full ${modeStyle.dotClassName}`} />
-                            {experience.startDate} - {experience.endDate}
-                        </span>
-                        <span>{experience.location}</span>
-                    </div>
+      <div className="space-y-4">
+        <div className="flex flex-wrap items-center gap-3 text-xs tracking-[0.15em] uppercase text-fg-dim font-medium">
+          <span>{experience.startDate} — {experience.endDate}</span>
+          <span className="w-1 h-1 rounded-full bg-border-base" />
+          <span>{experience.location}</span>
+        </div>
 
-                    <div>
-                        <h3 className="text-2xl md:text-3xl font-bold text-text-primary">
-                            {experience.role}
-                        </h3>
-                        <p className="mt-2 text-sm md:text-base text-text-muted">
-                            {experience.company}
-                        </p>
-                    </div>
+        <div>
+          <h3 className="text-2xl md:text-3xl font-serif text-fg-base tracking-tight">
+            {experience.role}
+          </h3>
+          <p className="mt-1 text-sm text-fg-muted">{experience.company}</p>
+        </div>
 
-                    <p className=" text-sm md:text-base leading-relaxed text-text-muted">
-                        {experience.summary}
-                    </p>
-                </div>
+        <p className="text-sm md:text-base text-fg-muted leading-relaxed max-w-3xl">
+          {experience.summary}
+        </p>
 
-                <div className="flex flex-wrap gap-3 lg:max-w-xs lg:justify-end">
-                    <span
-                        className={`inline-flex items-center rounded-full border px-4 py-2 text-xs font-semibold uppercase tracking-[0.2em] ${modeStyle.badgeClassName}`}
-                    >
-                        {modeLabel}: {modeValue}
-                    </span>
-                    {experience.demoUrl && (
-                        <DemoButton href={experience.demoUrl} label={demoLabel} />
-                    )}
-                </div>
-            </div>
+        <div className="flex flex-wrap gap-2">
+          {experience.technologies.map((tech) => (
+            <TechTag key={`${experience.id}-${tech.name}`} tech={tech} />
+          ))}
+        </div>
 
-            <div className="mt-8 flex flex-col gap-4">
-                <div className="grid gap-6 md:grid-cols-2">
-                    <div className="rounded-2xl border border-white/10 bg-white/5 p-5">
-                        <h4 className="text-sm font-semibold uppercase tracking-[0.22em] text-text-primary">
-                            {responsibilitiesLabel}
-                        </h4>
-                        <ul className="mt-4 space-y-3 text-sm leading-relaxed text-text-muted">
-                            {experience.responsibilities.map((item) => (
-                                <li key={item} className="flex gap-3">
-                                    <span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-cyan-400" />
-                                    <span>{item}</span>
-                                </li>
-                            ))}
-                        </ul>
-                    </div>
-
-                    <div className="rounded-2xl border border-white/10 bg-white/5 p-5">
-                        <h4 className="text-sm font-semibold uppercase tracking-[0.22em] text-text-primary">
-                            {achievementsLabel}
-                        </h4>
-                        <ul className="mt-4 space-y-3 text-sm leading-relaxed text-text-muted">
-                            {experience.achievements.map((item) => (
-                                <li key={item} className="flex gap-3">
-                                    <span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-cyan-400" />
-                                    <span>{item}</span>
-                                </li>
-                            ))}
-                        </ul>
-                    </div>
-                </div>
-
-                <div className="rounded-2xl border border-white/10 bg-linear-to-br from-white/8 to-white/2 p-5">
-                    <h4 className="text-sm font-semibold uppercase tracking-[0.22em] text-text-primary">
-                        Stack
-                    </h4>
-                    <div className="mt-4 flex flex-wrap gap-3">
-                        {experience.technologies.map((tech) => (
-                            <TechTag key={`${experience.id}-${tech.name}`} tech={tech} />
-                        ))}
-                    </div>
-                </div>
-
-                {galleryImages.length > 0 && (
-                    <div className="rounded-2xl border border-white/10 bg-white/5 p-5 ">
-                        <h4 className="text-sm font-semibold uppercase tracking-[0.22em] text-text-primary">
-                            {galleryLabel}
-                        </h4>
-                        <div className="mt-4 grid grid-cols-1 gap-4  min-h-80">
-                            <Stack cards={galleryImages.map((image, index) => (
-                                <div
-                                    key={`${experience.id}-${image}-${index}`}
-                                    // href={image}
-                                    // target="_blank"
-                                    // rel="noopener noreferrer"
-                                    className="group relative overflow-hidden rounded-2xl border border-white/10 bg-black/20"
-                                >
-                                    <img
-                                        src={image}
-                                        alt={`${experience.company} ${galleryLabel} ${index + 1}`}
-                                        className="h-80 w-full object-cover  transition-transform duration-500 group-hover:scale-105"
-                                        loading="lazy"
-                                    />
-                                </div>
-                            ))}
-                                pauseOnHover={true}
-                            />
-                        </div>
-                    </div>
-                )}
-            </div>
-        </motion.article>
-    );
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 pt-2">
+          <div className="rounded-xl border border-border-base bg-paper-subtle/30 p-4">
+            <h4 className="text-[10px] uppercase tracking-[0.2em] font-semibold text-fg-muted mb-3">
+              {labels.responsibilities}
+            </h4>
+            <ul className="space-y-2">
+              {experience.responsibilities.map((item) => (
+                <li key={item} className="flex gap-2 text-sm text-fg-muted leading-relaxed">
+                  <span className="mt-1.5 h-1 w-1 shrink-0 rounded-full bg-copper/40" />
+                  <span>{item}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
+          <div className="rounded-xl border border-border-base bg-paper-subtle/30 p-4">
+            <h4 className="text-[10px] uppercase tracking-[0.2em] font-semibold text-fg-muted mb-3">
+              {labels.achievements}
+            </h4>
+            <ul className="space-y-2">
+              {experience.achievements.map((item) => (
+                <li key={item} className="flex gap-2 text-sm text-fg-muted leading-relaxed">
+                  <span className="mt-1.5 h-1 w-1 shrink-0 rounded-full bg-copper/40" />
+                  <span>{item}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
+        </div>
+      </div>
+    </motion.article>
+  );
 }
 
 export function WorkExpSection() {
-    const { t } = useTranslation();
-    const { WORK_EXPERIENCES } = useGetAllWorkExperience();
+  const { t } = useTranslation();
+  const { WORK_EXPERIENCES } = useGetAllWorkExperience();
 
-    return (
-        <section className="w-full md:px-4 py-16">
-            <div className="mx-auto max-w-7xl rounded-3xl border border-white/10 p-4 md:p-8 shadow-[0_0_40px_rgba(0,0,0,0.35)] backdrop-blur-md">
-                <motion.div
-                    className="mb-12 text-center"
-                    initial={{ opacity: 0, y: -20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.5 }}
-                >
-                    <span className="inline-block rounded-full border border-border bg-highlight-blue/30 px-4 py-1 text-xs uppercase tracking-widest text-foreground">
-                        {t("workExperienceSection.badge")}
-                    </span>
-                    <h2 className="mt-4 text-4xl font-bold text-text-primary md:text-5xl lg:text-6xl">
-                        {t("workExperienceSection.title")}
-                    </h2>
-                    <p className="mx-auto mt-5 max-w-3xl text-sm leading-relaxed text-text-muted md:text-base">
-                        {t("workExperienceSection.description")}
-                    </p>
-                    <div className="mx-auto mt-6 h-1 w-16 rounded-full bg-linear-to-r from-highlight-blue to-cyan-500" />
-                </motion.div>
+  const labels = {
+    responsibilities: t("workExperienceSection.labels.responsibilities"),
+    achievements: t("workExperienceSection.labels.achievements"),
+  };
 
-                <div className="space-y-6">
-                    {WORK_EXPERIENCES.map((experience) => (
-                        <WorkExperienceCard
-                            key={experience.id}
-                            experience={experience}
-                            modeLabel={t("workExperienceSection.labels.mode")}
-                            modeValue={t(`workExperienceSection.modes.${experience.workMode}`)}
-                            responsibilitiesLabel={t("workExperienceSection.labels.responsibilities")}
-                            achievementsLabel={t("workExperienceSection.labels.achievements")}
-                            demoLabel={t("projectsSection.buttons.demo")}
-                            galleryLabel={t("workExperienceSection.labels.gallery")}
-                        />
-                    ))}
-                </div>
-            </div>
-        </section>
-    );
+  return (
+    <section className="w-full px-4 py-24 md:py-32">
+      <div className="mx-auto max-w-6xl">
+        <div className="mb-16">
+          <h2 className="font-serif text-4xl md:text-5xl lg:text-6xl tracking-tight text-balance text-fg-base">
+            {t("workExperienceSection.title")}
+          </h2>
+          <p className="mt-4 text-base text-fg-muted leading-relaxed max-w-2xl text-pretty">
+            {t("workExperienceSection.description")}
+          </p>
+          <div className="mt-6 h-px w-16 bg-copper" />
+        </div>
+
+        <div className="max-w-4xl">
+          {WORK_EXPERIENCES.map((exp) => (
+            <WorkCard key={exp.id} experience={exp} labels={labels} />
+          ))}
+        </div>
+      </div>
+    </section>
+  );
 }

@@ -1,27 +1,21 @@
-import { useTranslation } from 'react-i18next';
-import { Globe } from "lucide-react"
+import { useTranslation } from "react-i18next";
 
 export function LanguageSwitcher() {
-    const { i18n, t } = useTranslation();
+  const { i18n } = useTranslation();
 
-    const toggleLanguage = () => {
-        const newLang = i18n.language === 'es' ? 'en' : 'es';
-        i18n.changeLanguage(newLang);
-        localStorage.setItem('language', newLang);
-    };
+  const toggleLanguage = () => {
+    const newLang = i18n.language === "es" ? "en" : "es";
+    i18n.changeLanguage(newLang);
+    localStorage.setItem("language", newLang);
+  };
 
-    return (
-        <button
-            onClick={toggleLanguage}
-            className="flex justify-center items-center gap-2 p-2 rounded-lg bg-muted/40 backdrop-blur-sm border border-muted-foreground/40 hover:border-muted-foreground/80 transition-all duration-300 text-white bg-black hover:bg-muted/60"
-            aria-label="Toggle language"
-            title={i18n.language === 'es' ? t("language.english") : t("language.spanish")}
-        >
-            <Globe className="w-4 h-4" />
-            {
-                // Mostrar el idioma actual en el botón
-                i18n.language === 'es' ? 'ES' : 'EN'
-            }
-        </button>
-    );
+  return (
+    <button
+      onClick={toggleLanguage}
+      className="px-3 py-2 rounded-full text-xs font-medium uppercase tracking-wider text-fg-muted hover:text-fg-base hover:bg-paper-subtle transition-all duration-300"
+      aria-label={i18n.language === "es" ? "Switch to English" : "Cambiar a Español"}
+    >
+      {i18n.language === "es" ? "EN" : "ES"}
+    </button>
+  );
 }
