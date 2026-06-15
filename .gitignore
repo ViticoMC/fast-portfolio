@@ -17,6 +17,9 @@ dist-ssr
 .cursor
 .opencode
 
+# MCP
+.playwright-mcp
+
 # Editor directories and files
 .vscode/*
 !.vscode/extensions.json
