@@ -23,9 +23,9 @@ export default function NotFound() {
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5 }}
       >
-        <h1 className="font-serif text-8xl md:text-9xl tracking-tight text-fg-base mb-4">
+        <h2 className="font-serif text-8xl md:text-9xl tracking-tight text-fg-base mb-4">
           404
-        </h1>
+        </h2>
         <p className="text-base text-fg-muted leading-relaxed mb-8">
           {t("notFound.description")}
         </p>

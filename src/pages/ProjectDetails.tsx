@@ -30,9 +30,9 @@ export function ProjectDetails() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
         >
-          <h1 className="font-serif text-4xl text-fg-base mb-4">
+          <h2 className="font-serif text-4xl text-fg-base mb-4">
             {t("projectDetails.notFound")}
-          </h1>
+          </h2>
           <p className="text-fg-muted mb-8">{t("projectDetails.projectNotFoundDesc")}</p>
           <BackButton label={t("projectDetails.backToProjects")} />
         </motion.div>
@@ -74,9 +74,9 @@ export function ProjectDetails() {
         >
           <div>
             <div className="flex items-center gap-4 mb-4">
-              <h1 className="font-serif text-3xl md:text-4xl lg:text-5xl tracking-tight text-fg-base">
+              <h2 className="font-serif text-3xl md:text-4xl lg:text-5xl tracking-tight text-fg-base">
                 {project.title}
-              </h1>
+              </h2>
               {project.status && (
                 <span className="px-3 py-1 rounded-full text-[10px] uppercase tracking-widest border border-border-base text-fg-muted font-medium">
                   {project.status}

@@ -76,9 +76,9 @@ export function Projects() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5, delay: 0.1 }}
         >
-          <h1 className="font-serif text-4xl md:text-5xl lg:text-6xl tracking-tight text-balance text-fg-base">
+          <h2 className="font-serif text-4xl md:text-5xl lg:text-6xl tracking-tight text-balance text-fg-base">
             {t("projectsSection.allProjects")}
-          </h1>
+          </h2>
           <p className="mt-3 text-base text-fg-muted">
             {t("projectsSection.explore")} {filteredProjects.length}{" "}
             {filteredProjects.length !== 1
