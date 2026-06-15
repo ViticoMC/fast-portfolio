@@ -15,7 +15,7 @@ export const SEO_CONFIG = {
     es: "Victor, portafolio, frontend developer, React, Next.js, TypeScript, desarrollo web, UI, UX",
     en: "Victor, portfolio, frontend developer, React, Next.js, TypeScript, web development, UI, UX",
   },
-  OG_IMAGE: "/my-skin.webp",
+  OG_IMAGE: "/my-skin-1200x630.webp",
   TWITTER_HANDLE: "@victor_dev", // Update with actual handle
 };
 
