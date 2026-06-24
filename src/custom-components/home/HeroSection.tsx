@@ -1,6 +1,6 @@
 import { useTranslation } from "react-i18next";
 import { motion, useReducedMotion } from "motion/react";
-import TextType from "@/components/TextType";
+// import TextType from "@/components/TextType";
 
 const socialLinks = [
   { url: "https://github.com/viticomc", label: "GitHub" },
@@ -9,7 +9,7 @@ const socialLinks = [
 ];
 
 export function HeroSection() {
-  const { t, i18n } = useTranslation();
+  const { t } = useTranslation();
   const data = t("hero", { returnObjects: true }) as any;
   const shouldReduceMotion = useReducedMotion();
 
@@ -19,12 +19,12 @@ export function HeroSection() {
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
           {/* Left: Text Content */}
           <div className="lg:col-span-7 space-y-6">
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-border-base bg-paper-subtle/50">
+            {/* <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-border-base bg-paper-subtle/50">
               <span className="w-1.5 h-1.5 rounded-full bg-copper animate-pulse" />
               <span className="text-[10px] font-medium uppercase tracking-[0.2em] text-fg-muted">
                 <TextType key={i18n.language} text={data.badge || []} />
               </span>
-            </div>
+            </div> */}
 
             <h1 className="font-serif text-5xl sm:text-6xl md:text-7xl lg:text-8xl xl:text-9xl leading-[0.95] tracking-tight text-balance text-fg-base">
               {data.greeting as string}{" "}
